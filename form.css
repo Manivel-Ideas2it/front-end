@@ -1,0 +1,11 @@
+.form-container{
+    margin: 15%;
+    text-transform: capitalize;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+}
+form{
+    text-align: center;
+}
+input{
+    border-style: groove;
+}

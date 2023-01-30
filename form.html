@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>form</title>
+        <meta charset="UTF-8">
+        <meta name="author" content="manivel">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="form.css">
+    </head>
+    <body>
+        <div class="form-container">
+            <form onsubmit ="return myFunction()" id="form">   
+                <label for="fname" >firstName :</label>
+                <input type="text" value="" name="fname" id="fname" placeholder="first name"  autofocus pattern="^[A-Za-z]{2,20}([ ]?[a-zA-Z]+)*$" title="enter letters only" required> <br> <br>
+                <label for="lname">lastName  :</label>
+                <input type="text" value="" name="lname" id="lname" placeholder="last name"  pattern="^[A-Za-z]{1,20}([ ]?[a-zA-Z]+)*$" required><br> <br>
+                <label for="gender">gender :</label>
+                <input type="radio" value="Male" name="gender" id="Male" required>
+                <label for="Male">Male</label>
+                <input type="radio" value="Female" id="Female" name="gender" required>
+                <label for="Female">Female</label> <br> <br>
+                <label for="mobNo">mobile :</label>
+                <input type="tel" value="" name="mobNo" id="mobNo" placeholder="mobile No   : +91"  pattern="^[0|91]*[7-9]{1}[0-9]{9}$" required> <br> <br>
+                <label for="birthDate">date of birth :</label>
+                <input type="date" name="birthDate" id="birthDate" required> <br> <br>
+                <label for="language">language :</label> 
+                <input type="checkbox" name="language" id="language" value="HTML" > HTML
+                <input type="checkbox" name="language" id="language" value="CSS" > CSS
+                <input type="checkbox" name="language" id="language" value="JAVASCRIPT" > JAVASCRIPT
+                <input type="checkbox" name="language" id="language" value="BOOTSTRAP" > BOOTSTRAP <br> <br>
+                <label for="email">email :</label>
+                <input name="email" id="email" type="email" required placeholder="   mail@.com "> <br> <br>
+                <label for="qualification">qualification :</label>
+                <select name="qualification" id="qualification" required>
+                    <option value="" aria-readonly="true">---choose the degree--</option>
+                    <option value="B.E (ECE)">B.E (ECE)</option>
+                    <option value="B.E (EEE)">B.E (EEE)</option>
+                    <option value="B.E (CSE)">B.E (CSE)</option>
+                    <option value="B.E (MECH)">B.E (MECH)</option>
+                    <option value="B.E (IT)">B.E (IT)</option>
+                </select> <br> <br>
+                <input type="submit"> 
+                <input type="button" value="Reset" onclick="reset()">
+            </form>
+        </div>
+        <script src="form.js"></script>
+    </body>
+</html>
