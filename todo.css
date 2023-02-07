@@ -191,11 +191,17 @@ P{
     font-family:monospace;
     padding:4% 0% 0% 20%;
 }
-#remove{
-    width: 10%;
-    height: 15%;
+.remove{
+    width: 15%;
+    height: 20%;
     text-transform: uppercase;
     font-family:monospace;
     font-weight: 600;
-    margin: 5% 0% 0% 10%;
+    margin: 5% 0% 0% 25%;
+    background-color: lightslategray;
+    border: groove lightgray;
+    cursor: pointer;
+}
+.cancel{
+    margin: 3% 0% 0% 15%;
 }

@@ -36,6 +36,9 @@ function add(){
 }
 
 function removelist(element) {
+    // let message = "Do you want to remove the task...";
+    const dropList = element.parentElement;
+    console.log(dropList);
     let message = document.createElement("p");
     message.innerHTML = "Do you want to remove the task...";
     let remove = document.createElement("div");
@@ -43,27 +46,44 @@ function removelist(element) {
     remove.setAttribute("id","alert-box");
     document.body.appendChild(remove);
     let removeList = document.createElement("button");
-    removeList.id = "remove";
+    removeList.className = "remove conform";
     remove.appendChild(removeList);
     removeList.innerText = "ok";
-    // if (confirm(message) == true) {
+    let removeListCancel = document.createElement("button");
+    removeListCancel.className = "remove cancel";
+    remove.appendChild(removeListCancel);
+    removeListCancel.innerText = "cancel";
+    removeList.addEventListener('click', function() {
+        remove.remove();
+        removeConform(dropList);
+    });
+    removeListCancel.addEventListener('click', function() {
+        remove.remove();
+    });
+
+    // if (element.parentNode.childNodes[2].innerText == "edit" && confirm(message) == true) {
     //      element.parentElement.remove() 
+    // } else{
+    //     alert("save the text after that remove the task...");
     // }
 }
 
-function checkList( element ){
+function checkList(element){
     let countValue = document.getElementById("task-status").childElementCount -1;
     let listTwo = document.getElementById("task-status");
-    if( element.checked ){  
-        listTwo.appendChild(element.parentNode);
-        countValue++;
-        element.parentNode.childNodes[1].disabled = true;
-        element.parentNode.childNodes[2].style.display = "none";
-    } else{
+
+    if(element.checked ){  
+            listTwo.appendChild(element.parentNode);
+            countValue++;
+            element.parentNode.childNodes[1].disabled = true;
+            element.parentNode.childNodes[2].style.display = "none";
+       
+    } else {
         document.getElementById("task-info").appendChild(element.parentNode);
         element.parentNode.childNodes[2].style.display = "block";
         countValue--;
-    }
+    } 
+
     if( countValue == 0 ){
          document.getElementById("name").style.display = "none";
     } else {
@@ -85,3 +105,10 @@ function changeContent(element){
     }
 }
 
+function removeConform(element) {
+     if (element.childNodes[2].innerHTML == "edit") {
+        element.remove();
+     } else{
+         alert("save the text after that remove the task...");
+     }
+}
