@@ -8,4 +8,5 @@ import com.ideas2it.todo.model.Task;
 @Repository
 public interface TodoRepository extends JpaRepository<Task, Integer>{
 
+
 }

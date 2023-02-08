@@ -15,12 +15,14 @@ function add(){
     list.appendChild(listText);
     list.appendChild(text);
     list.appendChild(remove);
-    listText.value = document.getElementById("text-list").value;
-    if(listText.value == ""){
+    let listTextValue = document.getElementById("text-list").value;
+    if( listTextValue == ""){
         alert("you need to write something...");
         return false;
     }
-    listText.setAttribute("id","listText");
+    // output(inputText);
+    listText.value = listTextValue;
+    listText.setAttribute("id","list-Text");
     listText.disabled = true;
     check.type ="checkbox";
     check.setAttribute("id","check-box");
@@ -36,9 +38,7 @@ function add(){
 }
 
 function removelist(element) {
-    // let message = "Do you want to remove the task...";
     const dropList = element.parentElement;
-    console.log(dropList);
     let message = document.createElement("p");
     message.innerHTML = "Do you want to remove the task...";
     let remove = document.createElement("div");
@@ -60,12 +60,6 @@ function removelist(element) {
     removeListCancel.addEventListener('click', function() {
         remove.remove();
     });
-
-    // if (element.parentNode.childNodes[2].innerText == "edit" && confirm(message) == true) {
-    //      element.parentElement.remove() 
-    // } else{
-    //     alert("save the text after that remove the task...");
-    // }
 }
 
 function checkList(element){
@@ -111,4 +105,18 @@ function removeConform(element) {
      } else{
          alert("save the text after that remove the task...");
      }
+}
+
+function output(data){
+    const url = 'http://localhost:8080/api/v1/todo/add';
+    console.log(data.value);
+    let request =  {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+        'Content-Type': 'application/json'
+        }
+    };
+  
+    fetch(url,request).then(Response => Response.json).then((data) => console.log(data))
 }

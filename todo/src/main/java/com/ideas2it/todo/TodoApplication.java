@@ -1,10 +1,9 @@
 package com.ideas2it.todo;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import com.ideas2it.todo.mapper.ModelMap;
 
 /**
 *
@@ -16,8 +15,8 @@ import com.ideas2it.todo.mapper.ModelMap;
 public class TodoApplication {
 	
 	@Bean
-	public ModelMap modelMapper() {
-		return new ModelMap();
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
 	}
 
 	public static void main(String[] args) {
