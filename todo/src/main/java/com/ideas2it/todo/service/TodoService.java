@@ -16,4 +16,8 @@ public interface TodoService {
 	void addTask(TaskDto taskDto);
 
 	List<TaskDto> readTask();
+
+	void deleteTask(TaskDto taskDto);
+
+	void updateTask(TaskDto taskDto);
 }
