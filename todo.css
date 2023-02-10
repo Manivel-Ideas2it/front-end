@@ -90,10 +90,11 @@ html,body{
     border-radius: 5px;
 }
 
-h2{
+#name{
     text-transform: capitalize;
     font-family: 'Poppins', sans-serif;
     color: blueviolet;
+    /* display: none; */
 }
 
 #add{

@@ -1,6 +1,5 @@
 package com.ideas2it.todo.service.impl;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -41,6 +40,12 @@ public class TodoServiceImpl implements TodoService{
 
 	@Override
 	public void updateTask(TaskDto taskDto) {
+		Task task = modelmap.map(taskDto, Task.class);
+		todoRepo.save(task);
+	}
+
+	@Override
+	public void completeTask(TaskDto taskDto) {
 		Task task = modelmap.map(taskDto, Task.class);
 		todoRepo.save(task);
 	}

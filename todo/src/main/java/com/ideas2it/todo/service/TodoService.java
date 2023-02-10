@@ -20,4 +20,6 @@ public interface TodoService {
 	void deleteTask(TaskDto taskDto);
 
 	void updateTask(TaskDto taskDto);
+	
+	void completeTask(TaskDto taskDto);
 }
