@@ -15,10 +15,12 @@
             <span class="material-symbols-outlined ">apps</span>
         </div>
         <button class="reload">To Do</button>
-        <input type="button" id="search" title="search"> 
-        <span class="material-symbols-outlined search-icon">
-        search
-        </span>
+        <div class="search info">
+            <input type="button" class="search" title="search"> 
+            <span class="material-symbols-outlined search-icon">
+            search
+            </span>
+        </div>
     </div>
     <div class="left-menu-bar">
         <div class="new-list">
@@ -29,10 +31,13 @@
             <input type="text" id="text-list" placeholder="Add a task">
             <button id="add" onclick="add()" type="button">add</button>
         </div>
-        <div id="task-info">
-        </div>
-        <div id="task-status">
-            <h2 id="name">Completed Task</h2>   
+        <div class="task-details">
+            <div id="task-info">
+            </div>
+            <div id="task-completion">
+            </div>
+            <div id="task-status">
+            </div>
         </div>
    </div>
    <script src="todo.js"></script>

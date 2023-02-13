@@ -34,7 +34,7 @@ html,body{
      text-decoration: underline;
      cursor: pointer;
 }
-#search{
+.search{
     position: absolute;
     top: 19%;
     left: 31%;
@@ -61,12 +61,10 @@ html,body{
 }
 .new-list{
     width: 75%;
-    height: 10%;
-    background-color:aquamarine ;
+    height: 10%;    
 }
 
 .task-add{
-    background-color: lightskyblue;
     width: 73%;
     height: 88%;
     position: absolute;
@@ -90,11 +88,13 @@ html,body{
     border-radius: 5px;
 }
 
-#name{
+.completed-child1{
+    border: 1px solid red;
     text-transform: capitalize;
     font-family: 'Poppins', sans-serif;
-    color: blueviolet;
-    /* display: none; */
+    width: 100%;
+    height: 3em;
+    contain: content;
 }
 
 #add{
@@ -110,8 +110,7 @@ html,body{
 #task-info{ 
     width: 90%;
     margin: 3% 0% 0% 4%;
-    max-height: 40%;
-    overflow: auto;
+    min-height: 0%;
 }
 
 li{
@@ -119,7 +118,7 @@ li{
     height: 26px;
     padding: 1% 0% 0% 5%;
     width: 75%;
-    margin: 1% 0% 1% 7%;
+    margin: 2% 0% 0% 5%;;
     border-radius: 7px;
     background-color: ghostwhite;
     box-shadow: 0px 0px 5px 1px;
@@ -135,10 +134,23 @@ li{
 
 #task-status{
     width: 90%;
-    max-height: 39%;
-    margin: 3% 0% 0% 4%;
+    min-height: 7%;
+    margin: 0% 0% 0% 4%;
+}
+
+.task-details{
+    height: 91%;
     overflow: auto;
+}
+#task-completion{
+    background-color: white;
+    height: 7%;
+    padding: 2% 0% 0% 4%;
+    margin: 2% 0% 0% 0%;
+    text-transform: capitalize;
+    font:600 100% Arial, Helvetica, sans-serif;
     display: none;
+    cursor: pointer;
 }
 #button{
     background-color: lightgreen;
@@ -154,6 +166,7 @@ li{
     border-color: beige;
     cursor: pointer;
 }
+
 #check-box{
     position: absolute;
     left: 1%;
@@ -161,9 +174,11 @@ li{
     height: 60%;
     cursor: pointer;
 }
+
 .check-box-clr{
     background-color: blue;
 }
+
 .text{
     background-color: lightgreen;
     height: 29px;
@@ -178,32 +193,37 @@ li{
     border-color: beige;
     cursor: pointer;
 }
+
 #alert-box {
-    width: 30%;
+    width: 24%;
     height: 20%;
-    background-color: lightgray; 
-    position : fixed;
-    left:37%;
-    bottom:40%;
+    background-color: white;
+    position: fixed;
+    left: 39%;
+    bottom: 40%;
     border-radius: 5px;
-    box-shadow: 0px 0px 4px 1px whitesmoke;
+    box-shadow: 0px 0px 4px 1px lightgrey;
 }
+
 P{
     text-transform: capitalize;
-    font-family:monospace;
-    padding:4% 0% 0% 20%;
+    font:600 100% monospace;
+    padding: 4% 0% 0% 13%;
 }
+
 .remove{
-    width: 15%;
+    width: 16%;
     height: 20%;
     text-transform: uppercase;
-    font-family:monospace;
+    font-family: monospace;
     font-weight: 600;
+    font-size: 88%;
     margin: 5% 0% 0% 25%;
-    background-color: lightslategray;
+    background-color: lightslategrey;
     border: groove lightgray;
     cursor: pointer;
 }
+
 .cancel{
     margin: 3% 0% 0% 15%;
 }

@@ -1,4 +1,4 @@
-window.addEventListener("load",() => readList());
+window.addEventListener("load",() => loadedList());
 const url = 'http://localhost:8080/api/v1/todo';
 let input = document.getElementById("text-list");
 input.addEventListener("keydown", function(event) {
@@ -6,12 +6,21 @@ input.addEventListener("keydown", function(event) {
         add();
     }
 });
+division = document.getElementById("task-completion");
+division.addEventListener("click",function(){
+if(document.getElementById("task-status").style.display == "none"){
+    document.getElementById("task-status").style.display = "block";
+} else{
+    document.getElementById("task-status").style.display ="none";
+}
+});
+
 function read(data){
     let list = document.createElement("li");
     let listText = document.createElement("input");
     let remove = document.createElement("button");
     let check = document.createElement("input");
-    let text = document.createElement("button");
+    let text = document.createElement("button"); 
     list.appendChild(check);
     list.appendChild(listText);
     list.appendChild(text);
@@ -71,29 +80,27 @@ function removelist(element,data) {
 } 
 
 function checkList(element,data){
-    let countValue = document.getElementById("task-status").childElementCount -1;
+    let countValue = document.getElementById("task-status").childElementCount;
     let listTwo = document.getElementById("task-status");
 
     if(element.checked && data.complete == false){
-        listTwo.appendChild(element.parentNode);
         countValue++;
-        element.parentNode.childNodes[1].disabled = true;
+        listTwo.appendChild(element.parentNode);
         element.parentNode.childNodes[2].style.display = "none";
         element.parentNode.childNodes[3].style.left =  "101%";
         completedTask(data);
     } else {
+        countValue--;
         document.getElementById("task-info").appendChild(element.parentNode);
         element.parentNode.childNodes[2].style.display = "block";
         element.parentNode.childNodes[3].style.left =  "109%";
-        countValue--;
         completedTask(data);
     } 
-    if( countValue == 0 ){
-        document.getElementById("name").style.display = "none";
-    } 
-    else {
-        document.getElementById("name").style.display = "block";
-        listTwo.style.display = "block";
+    if(countValue == 0){
+        document.getElementById("task-completion").style.display="none";
+    } else {
+        document.getElementById("task-completion").innerText = "completed - " + countValue;
+        document.getElementById("task-completion").style.display="block";
     }
 }
 
@@ -102,23 +109,29 @@ function completedTask(data){
     completeList(data);
 }
 
-function loadedList(data){
-    let duplicate = (document.getElementById("task-info").childElementCount + 1)  
-                    + (document.getElementById("task-status").childElementCount -1);
-    if(duplicate != data.length) {
-        for(let task of data){
-            read(task);
-        }
-    } else {
-        read(data[data.length-1]);
-    }
+function loadedList(){
+    // let duplicate = (document.getElementById("task-info").childElementCount  + 1)  
+    //                 + (document.getElementById("task-status").childElementCount );
+                    let child1 =document.getElementById("task-info").childNodes;
+                    child1.remove();
+                    let child2 = document.getElementById("task-status").childNodes;
+                    child2.remove();
+    readList().then((result) => {
+        console.log(result);
+        // if( duplicate != result.length) {
+            for(let task of result){
+                read(task);
+            }
+        // } else {
+        //     read(result[result.length-1]);
+        // }
+    });    
 }
 
 function changeContent(element,elementData){
     let editContent = element.parentNode;
     let saveContent = editContent.childNodes[1];
     if(saveContent.disabled) {
-        alert("3");
         saveContent.disabled = false;
         saveContent.focus();
         editContent.childNodes[2].innerText = "save";
@@ -151,17 +164,15 @@ function add(){
         'Content-Type': 'application/json'
         }
     };
-    fetch(url,request).then(() => readList());
+    fetch(url,request).then(() => loadedList());
 }
-function readList(){
+async function readList(){
     let request = {
         method : 'GET'
     };
-    fetch(url,request).then(response => {
-        response.json().then((data) =>  {
-        loadedList(data);
-        })
-    });
+    let data = fetch(url,request);
+    const response = await data;
+    return await response.json();
 }
 function dropList(element){
     let request =  {
