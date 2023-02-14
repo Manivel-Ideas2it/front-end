@@ -15,8 +15,11 @@
             <span class="material-symbols-outlined ">apps</span>
         </div>
         <button class="reload">To Do</button>
-        <div class="search info">
-            <input type="button" class="search" title="search"> 
+        <div id="info" >
+            <!-- <input type="text" class="search" title="search" placeholder="search">  -->
+            <span class="material-symbols-outlined" id="closer">
+                close
+         </span>
             <span class="material-symbols-outlined search-icon">
             search
             </span>
@@ -26,7 +29,7 @@
         <div class="new-list">
         </div>
     </div>
-    <div class="task-add">
+    <div class="task-add search-box">
         <div class="task">
             <input type="text" id="text-list" placeholder="Add a task">
             <button id="add" onclick="add()" type="button">add</button>

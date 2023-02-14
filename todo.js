@@ -1,4 +1,9 @@
-window.addEventListener("load",() => loadedList());
+let searchEventCount;
+window.addEventListener("load",() =>{
+    loadedList();
+    searchEventCount = 0;
+});
+
 const url = 'http://localhost:8080/api/v1/todo';
 let input = document.getElementById("text-list");
 input.addEventListener("keydown", function(event) {
@@ -6,6 +11,7 @@ input.addEventListener("keydown", function(event) {
         add();
     }
 });
+
 division = document.getElementById("task-completion");
 division.addEventListener("click",function(){
 if(document.getElementById("task-status").style.display == "none"){
@@ -14,6 +20,32 @@ if(document.getElementById("task-status").style.display == "none"){
     document.getElementById("task-status").style.display ="none";
 }
 });
+
+searchDiv = document.getElementById("info");
+searchDiv.addEventListener('click',function(event){
+    searchEventCount++;
+    if (searchEventCount == 1) {
+        searchDivision(searchDiv);
+    }
+});
+
+function searchDivision(element,event){
+    let searchDiv = document.createElement("input");
+    searchDiv.id = "search";
+    searchDiv.placeholder ="search";
+    searchDiv.title = "search";
+    element.appendChild(searchDiv);
+    searchDiv.focus(); 
+    closer = document.getElementById("closer");
+    // closer.style.display = "block";
+    searchDiv.appendChild(closer);
+    createSerachDiv();
+}
+function createSerachDiv(){
+    let creatDiv = document.createElement("div");
+    creatDiv.className = "search-box";
+
+}
 
 function read(data){
     let list = document.createElement("li");
@@ -71,6 +103,7 @@ function removelist(element,data) {
     removeList.addEventListener('click', function() {
         remove.remove();
         removeConform(dropListelemnt);
+        completedTaskCount();
         dropList(data);
     });
     removeListCancel.addEventListener('click', function() {
@@ -80,22 +113,24 @@ function removelist(element,data) {
 } 
 
 function checkList(element,data){
-    let countValue = document.getElementById("task-status").childElementCount;
     let listTwo = document.getElementById("task-status");
 
     if(element.checked && data.complete == false){
-        countValue++;
         listTwo.appendChild(element.parentNode);
         element.parentNode.childNodes[2].style.display = "none";
         element.parentNode.childNodes[3].style.left =  "101%";
         completedTask(data);
     } else {
-        countValue--;
         document.getElementById("task-info").appendChild(element.parentNode);
         element.parentNode.childNodes[2].style.display = "block";
         element.parentNode.childNodes[3].style.left =  "109%";
         completedTask(data);
     } 
+    completedTaskCount();
+}
+
+function completedTaskCount(count){
+    let countValue = document.getElementById("task-status").childElementCount;
     if(countValue == 0){
         document.getElementById("task-completion").style.display="none";
     } else {
@@ -110,21 +145,16 @@ function completedTask(data){
 }
 
 function loadedList(){
-    // let duplicate = (document.getElementById("task-info").childElementCount  + 1)  
-    //                 + (document.getElementById("task-status").childElementCount );
-                    let child1 =document.getElementById("task-info").childNodes;
-                    child1.remove();
-                    let child2 = document.getElementById("task-status").childNodes;
-                    child2.remove();
+    let duplicate = (document.getElementById("task-info").childElementCount  + 1)  
+                    + (document.getElementById("task-status").childElementCount );
     readList().then((result) => {
-        console.log(result);
-        // if( duplicate != result.length) {
+        if( duplicate != result.length) {
             for(let task of result){
                 read(task);
             }
-        // } else {
-        //     read(result[result.length-1]);
-        // }
+        } else {
+            read(result[result.length-1]);
+        }
     });    
 }
 
@@ -166,6 +196,7 @@ function add(){
     };
     fetch(url,request).then(() => loadedList());
 }
+
 async function readList(){
     let request = {
         method : 'GET'
@@ -174,6 +205,7 @@ async function readList(){
     const response = await data;
     return await response.json();
 }
+
 function dropList(element){
     let request =  {
     method: 'DELETE',
@@ -184,6 +216,7 @@ function dropList(element){
     };
     fetch(url,request);
 }
+
 function updateList(element){
     let request =  {
     method: 'PUT',
@@ -194,6 +227,7 @@ function updateList(element){
     };
     fetch(url,request);
 }
+
 function completeList(element){
     let request =  {
     method: 'PATCH',
