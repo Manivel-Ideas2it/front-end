@@ -1,7 +1,6 @@
-let searchEventCount;
 window.addEventListener("load",() =>{
     loadedList();
-    searchEventCount = 0;
+    searchEvent();
 });
 
 const url = 'http://localhost:8080/api/v1/todo';
@@ -21,30 +20,55 @@ if(document.getElementById("task-status").style.display == "none"){
 }
 });
 
-searchDiv = document.getElementById("info");
-searchDiv.addEventListener('click',function(event){
-    searchEventCount++;
-    if (searchEventCount == 1) {
-        searchDivision(searchDiv);
-    }
-});
-
-function searchDivision(element,event){
-    let searchDiv = document.createElement("input");
-    searchDiv.id = "search";
-    searchDiv.placeholder ="search";
-    searchDiv.title = "search";
-    element.appendChild(searchDiv);
-    searchDiv.focus(); 
-    closer = document.getElementById("closer");
-    // closer.style.display = "block";
-    searchDiv.appendChild(closer);
-    createSerachDiv();
+function searchEvent(){
+    let menuBar = document.getElementById("menu-container");
+    let searchBar = document.createElement("div");
+    searchBar.id = "search-bar";
+    menuBar.appendChild(searchBar);
+    let searchIcon = document.createElement("span");
+    searchIcon.className = "material-symbols-outlined search-icon";
+    searchIcon.innerText = "search";
+    searchBar.appendChild(searchIcon);
+    searchBar.addEventListener("click",function(){
+        searchDivision();
+        console.log(document.getElementById("search"));
+    });
 }
+
+function searchDivision(){
+    let searchInput = document.createElement("input");
+    searchInput.id = "search";
+    searchInput.setAttribute("type","text");
+    searchInput.setAttribute("input", "value)");
+    let menubar = document.getElementById("menu-container");
+    menubar.appendChild(searchInput);
+    console.log(document.getElementById("search").value)
+    const filter = document.getElementById('search').value;
+    let closer = document.createElement("span");
+    closer.className = "material-symbols-outlined closer";
+    closer.innerText = "close";
+    menubar.appendChild(closer);
+    let filterDiv = document.createElement("div");
+    filterDiv.id = "filterDiv";
+    document.body.appendChild(filterDiv); 
+    closer.addEventListener("click",function(){
+        searchInput.remove();
+        closer.remove();
+        filterDiv.remove();
+    }); 
+    console.log(document.getElementById("search").value)
+    console.log(filter);
+}
+
+function searchResult(filter){
+    console.log(filter);
+    let data = searchList(filter);
+    console.log(data);
+}
+
 function createSerachDiv(){
     let creatDiv = document.createElement("div");
     creatDiv.className = "search-box";
-
 }
 
 function read(data){
@@ -121,6 +145,7 @@ function checkList(element,data){
         element.parentNode.childNodes[3].style.left =  "101%";
         completedTask(data);
     } else {
+
         document.getElementById("task-info").appendChild(element.parentNode);
         element.parentNode.childNodes[2].style.display = "block";
         element.parentNode.childNodes[3].style.left =  "109%";
@@ -141,20 +166,16 @@ function completedTaskCount(count){
 
 function completedTask(data){
     data.complete = !(data.complete);
-    completeList(data);
+    updateList(data);
 }
 
 function loadedList(){
-    let duplicate = (document.getElementById("task-info").childElementCount  + 1)  
-                    + (document.getElementById("task-status").childElementCount );
+    document.getElementById("task-info").innerHTML = "";
+    document.getElementById("task-status").innerHTML = "";
     readList().then((result) => {
-        if( duplicate != result.length) {
             for(let task of result){
                 read(task);
             }
-        } else {
-            read(result[result.length-1]);
-        }
     });    
 }
 
@@ -198,12 +219,12 @@ function add(){
 }
 
 async function readList(){
+    const url = 'http://localhost:8080/api/v1/todo/';
     let request = {
         method : 'GET'
     };
-    let data = fetch(url,request);
-    const response = await data;
-    return await response.json();
+    let data = await fetch(url,request);
+    return data.json();
 }
 
 function dropList(element){
@@ -228,13 +249,8 @@ function updateList(element){
     fetch(url,request);
 }
 
-function completeList(element){
-    let request =  {
-    method: 'PATCH',
-    body: JSON.stringify(element),
-    headers: {
-        'Content-Type': 'application/json'
-        }
-    };
-    fetch(url,request);
+async function searchList(element){
+    const url = 'http://localhost:8080/api/v1/todo?name=' + element;
+    let data = await fetch(url);
+    return data.json();
 }

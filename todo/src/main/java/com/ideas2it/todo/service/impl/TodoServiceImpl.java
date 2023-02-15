@@ -44,12 +44,16 @@ public class TodoServiceImpl implements TodoService{
 		todoRepo.save(task);
 	}
 
-	@Override
-	public void completeTask(TaskDto taskDto) {
-		Task task = modelmap.map(taskDto, Task.class);
-		todoRepo.save(task);
+//	@Override
+//	public void completeTask(TaskDto taskDto) {
+//		Task task = modelmap.map(taskDto, Task.class);
+//		todoRepo.save(task);
+//	}
+	
+	public List<TaskDto> searchTask(String taskname){
+		List<Task> task = todoRepo.findByTaskContains(taskname);
+		List<TaskDto> taskDto = task.stream().map(t -> modelmap.map(t, TaskDto.class)).toList(); 
+		return taskDto;	
 	}
-	
-	
 
 }

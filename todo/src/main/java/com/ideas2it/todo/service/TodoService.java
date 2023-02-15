@@ -21,5 +21,7 @@ public interface TodoService {
 
 	void updateTask(TaskDto taskDto);
 	
-	void completeTask(TaskDto taskDto);
+//	void completeTask(TaskDto taskDto);
+	
+	List<TaskDto> searchTask(String task);
 }

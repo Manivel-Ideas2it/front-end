@@ -20,12 +20,12 @@ html,body{
     background-color: rgb(50, 88, 145);
     cursor: pointer;
 }
-#closer{
+.closer{
     position: absolute;
-    bottom: 16%;
-    left: 67%;
-    color:rgb(50, 88, 145);
-    /* display: none; */
+    bottom: 24%;
+    left: 35%;
+    color: rgb(50, 88, 145);
+    cursor: pointer;
 }
 .reload{
     font: 600 95% 'Poppins', sans-serif;
@@ -55,15 +55,25 @@ html,body{
 } 
 
 #search{
-    position:absolute;
-    width: 85%;
-    height: 71%;
-    margin: 1% 0% 0% 7%;
+    position: absolute;
+    width: 27%;
+    height: 53%;
+    left: 33%;
+    bottom: 22%;
     cursor: pointer;
     outline: none;
     border: none;
+    background-color:white;
 }
-#info{
+#filterDiv{
+    width: 73%;
+    height: 89%;
+    position: relative;
+    bottom: 89%;
+    left: 25%;
+    background-color: aquamarine;
+}
+#search-bar{
     background-color: white;
     position: relative;
     top: -83%; 

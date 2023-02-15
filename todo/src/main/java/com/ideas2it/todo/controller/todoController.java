@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ideas2it.todo.dto.TaskDto;
@@ -36,7 +36,7 @@ public class todoController {
 	todoService.addTask(taskDto);
 	}
 	
-	@GetMapping
+	@GetMapping("/")
 	public List<TaskDto> readtask() {
 		return todoService.readTask();
 	}
@@ -48,14 +48,12 @@ public class todoController {
 	
 	@PutMapping()
 	public void updateTask(@RequestBody TaskDto taskDto) {
-		System.out.print(taskDto.isComplete());
 		todoService.updateTask(taskDto);
 	}
 	
-	@PatchMapping()
-	public void completeTask(@RequestBody TaskDto taskDto) {
-		System.out.print(taskDto.isComplete());
-		todoService.completeTask(taskDto);
+	@GetMapping
+	public  List<TaskDto> searchTask(@RequestParam("name") String name){
+		return todoService.searchTask(name);
 	}
 	
 }
