@@ -26,7 +26,7 @@ import com.ideas2it.todo.service.TodoService;
 @RestController
 @RequestMapping("/api/v1/todo")
 @CrossOrigin(origins =  "http://127.0.0.1:5500")
-public class todoController {
+public class TodoController {
 	
 	@Autowired
 	private TodoService todoService;

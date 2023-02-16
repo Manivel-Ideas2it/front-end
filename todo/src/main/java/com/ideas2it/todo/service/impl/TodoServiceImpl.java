@@ -1,5 +1,6 @@
 package com.ideas2it.todo.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -44,16 +45,15 @@ public class TodoServiceImpl implements TodoService{
 		todoRepo.save(task);
 	}
 
-//	@Override
-//	public void completeTask(TaskDto taskDto) {
-//		Task task = modelmap.map(taskDto, Task.class);
-//		todoRepo.save(task);
-//	}
 	
 	public List<TaskDto> searchTask(String taskname){
-		List<Task> task = todoRepo.findByTaskContains(taskname);
-		List<TaskDto> taskDto = task.stream().map(t -> modelmap.map(t, TaskDto.class)).toList(); 
-		return taskDto;	
+		if(taskname != "") {
+			List<Task> task = todoRepo.findByTaskContains(taskname);
+			List<TaskDto> taskDto = task.stream().map(t -> modelmap.map(t, TaskDto.class)).toList(); 
+			return taskDto;	
+		} else {
+			return new ArrayList<>();
+		}
 	}
 
 }

@@ -20,6 +20,43 @@ html,body{
     background-color: rgb(50, 88, 145);
     cursor: pointer;
 }
+#login-Div{
+    width: 30%;
+    height: 25%;
+    background-color: azure;
+    position: relative;
+    bottom: 63%;
+    left: 34%;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 12px red;
+    /* display: inline-block; */
+}
+#login-id-text{
+    text-transform: capitalize;
+    font: 600 larger monospace;
+    padding: 12% 0% 0% 28%;
+    text-shadow: 0px 0px 1px red;
+}
+#input-text{
+    width: 48%;
+    height: 10%;
+    outline: none;
+    border: none;
+    margin: 5% 0% 0% 10%;
+    box-shadow: 0px 0px 4px cadetblue;
+    border-radius: 7px;
+    padding: 0% 0% 0% 3%;
+    font-size: 80%;
+}
+#login-submit{
+    width: 16%;
+    height: 11%;
+    background-color: blue;
+    border: none;
+    border-radius: 11px;
+    margin: 0% 0% 0% 10%;
+    color: azure;
+}
 .closer{
     position: absolute;
     bottom: 24%;
@@ -60,7 +97,7 @@ html,body{
     height: 53%;
     left: 33%;
     bottom: 22%;
-    cursor: pointer;
+    cursor: text;
     outline: none;
     border: none;
     background-color:white;
@@ -88,6 +125,7 @@ html,body{
     background-color: white;
     width: 23%;
     height: 92%;
+    /* display: inline-block; */
 }
 .new-list{
     width: 75%;
@@ -100,6 +138,14 @@ html,body{
     position: absolute;
     top: 12%;
     left: 25%;
+}
+#search-box{
+    width: 73%;
+    height: 88%;
+    position: absolute;
+    top: 12%;
+    left: 25%; 
+    background-color:  white;
 }
 
 .task{
@@ -116,6 +162,7 @@ html,body{
     padding-left: 1%;
     border-color: black;
     border-radius: 5px;
+    /* box-sizing: border-box; */
 }
 
 .completed-child1{
@@ -235,7 +282,7 @@ li{
     box-shadow: 0px 0px 4px 1px lightgrey;
 }
 
-P{
+.alert-box-message{
     text-transform: capitalize;
     font:600 100% monospace;
     padding: 4% 0% 0% 13%;

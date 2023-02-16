@@ -1,9 +1,77 @@
 window.addEventListener("load",() =>{
+    createUser();
     loadedList();
     searchEvent();
 });
 
 const url = 'http://localhost:8080/api/v1/todo';
+
+function createUser(){
+    let loginDiv = document.createElement("div");
+    loginDiv.id = "login-Div";
+    document.body.appendChild(loginDiv);
+    let text = document.createElement("p");
+    text.innerText = "enter the login id";
+    text.id = "login-id-text";
+    loginDiv.appendChild(text);
+    let inputText = document.createElement("input");
+    inputText.id = "input-text";
+    // inputText.
+    let submit = document.createElement("button");
+    submit.id = "login-submit";
+    submit.innerText="send";
+    loginDiv.appendChild(inputText);
+    loginDiv.appendChild(submit);
+}
+
+function searchEvent(){
+    let menuBar = document.getElementById("menu-container");
+    let searchBar = document.createElement("div");
+    searchBar.id = "search-bar";
+    menuBar.appendChild(searchBar);
+    let searchIcon = document.createElement("span");
+    searchIcon.className = "material-symbols-outlined search-icon";
+    searchIcon.innerText = "search";
+    searchBar.appendChild(searchIcon);
+    searchBar.addEventListener("click",function(){
+        searchDivision();
+    });
+}
+function searchDivision(){
+    let searchInput = document.createElement("input");
+    searchInput.id = "search";
+    let menubar = document.getElementById("menu-container");
+    menubar.appendChild(searchInput);
+    searchInput.focus();
+    let closer = document.createElement("span");
+    closer.className = "material-symbols-outlined closer";
+    closer.innerText = "close";
+    menubar.appendChild(closer);
+    closer.addEventListener("click",function(){
+        searchInput.remove();
+        closer.remove();
+        document.getElementById("search-box").remove();
+    });
+    searchInput.addEventListener("input",function(){
+        filter = searchInput.value;
+        createSerachDiv(searchList(filter));
+    });
+}
+
+function createSerachDiv(element){
+    let creatDiv = document.createElement("div");
+    creatDiv.id = "search-box";
+    element.then(result => {
+        result.forEach(e => {
+            let list = createListDivision(e);
+            creatDiv.appendChild(list);
+            console.log(e);
+            console.log(list.childNodes[1].value);   
+        });
+    });
+    document.body.appendChild(creatDiv);  
+};
+
 let input = document.getElementById("text-list");
 input.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
@@ -20,58 +88,19 @@ if(document.getElementById("task-status").style.display == "none"){
 }
 });
 
-function searchEvent(){
-    let menuBar = document.getElementById("menu-container");
-    let searchBar = document.createElement("div");
-    searchBar.id = "search-bar";
-    menuBar.appendChild(searchBar);
-    let searchIcon = document.createElement("span");
-    searchIcon.className = "material-symbols-outlined search-icon";
-    searchIcon.innerText = "search";
-    searchBar.appendChild(searchIcon);
-    searchBar.addEventListener("click",function(){
-        searchDivision();
-        console.log(document.getElementById("search"));
-    });
-}
-
-function searchDivision(){
-    let searchInput = document.createElement("input");
-    searchInput.id = "search";
-    searchInput.setAttribute("type","text");
-    searchInput.setAttribute("input", "value)");
-    let menubar = document.getElementById("menu-container");
-    menubar.appendChild(searchInput);
-    console.log(document.getElementById("search").value)
-    const filter = document.getElementById('search').value;
-    let closer = document.createElement("span");
-    closer.className = "material-symbols-outlined closer";
-    closer.innerText = "close";
-    menubar.appendChild(closer);
-    let filterDiv = document.createElement("div");
-    filterDiv.id = "filterDiv";
-    document.body.appendChild(filterDiv); 
-    closer.addEventListener("click",function(){
-        searchInput.remove();
-        closer.remove();
-        filterDiv.remove();
-    }); 
-    console.log(document.getElementById("search").value)
-    console.log(filter);
-}
-
-function searchResult(filter){
-    console.log(filter);
-    let data = searchList(filter);
-    console.log(data);
-}
-
-function createSerachDiv(){
-    let creatDiv = document.createElement("div");
-    creatDiv.className = "search-box";
-}
 
 function read(data){
+    let list = createListDivision(data);
+    document.getElementById("task-info").appendChild(list);
+    if(data.complete){
+        data.complete = !(data.complete);
+        list.childNodes[0].checked = true;
+        checkList(list.childNodes[0],data);
+    }
+    document.getElementById("text-list").value = "";
+}
+
+function createListDivision(data){
     let list = document.createElement("li");
     let listText = document.createElement("input");
     let remove = document.createElement("button");
@@ -81,6 +110,7 @@ function read(data){
     list.appendChild(listText);
     list.appendChild(text);
     list.appendChild(remove);
+    list.id = "added-list";
     listText.value = data.task;
     listText.id = "list-Text";
     listText.disabled = true;
@@ -99,18 +129,13 @@ function read(data){
     text.addEventListener('click',function(){
         changeContent(text,data);
     });
-    document.getElementById("task-info").appendChild(list);
-    if(data.complete){
-        data.complete = !(data.complete);
-        check.checked = true;
-        checkList(check,data);
-    }
-    document.getElementById("text-list").value = "";
+    return list;
 }
 
 function removelist(element,data) {
     const dropListelemnt = element.parentElement;
     let message = document.createElement("p");
+    message.className = "alert-box-message";
     message.innerHTML = "Do you want to remove the task...";
     let remove = document.createElement("div");
     remove.appendChild(message);
@@ -170,8 +195,8 @@ function completedTask(data){
 }
 
 function loadedList(){
-    document.getElementById("task-info").innerHTML = "";
-    document.getElementById("task-status").innerHTML = "";
+    // document.getElementById("task-info").innerHTML = " ";
+    // document.getElementById("task-status").innerHTML = " ";
     readList().then((result) => {
             for(let task of result){
                 read(task);
