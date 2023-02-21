@@ -1,114 +1,163 @@
 html,body{
     margin: 0%;
     height: 100%;
-    background-color: whitesmoke;
+    
 }
-.menu-container{
-    background-color: rgb(39 104 203);
-    height: 8%;
+#main-container{
+    background-color:#6b5050;;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+#signUp-Div{
+    background-color: black;
+    width: 28%;
+    height: 33%;
+    margin: 13% 1% 1% 34%;
+    box-shadow: 0px 0px 12px red;
+    box-sizing: border-box;
+    color: white;
+    padding: 5% 0% 0% 8%;
+    font-family: monospace;
+    text-transform: capitalize;
+}
+
+.sign{
     position: relative;
+    font-family: math;
+    box-shadow: 0px 0px 8px red;
+}
+.in{
+    top: 25%;
+    right: 8%;
+    width: 25.7%;
+    height: 14.8%;
+}
+.up{
+    top: 38%;
+    right: 15%;
+    width: 25%;
+    height: 14%;
+    font-size: 75%;
+}
+.sign-page{
+    background-color: black;
+    width: 28%;
+    height: 41%;
+    margin: 13% 1% 1% 34%;
+    box-shadow: 0px 0px 12px red;
+    box-sizing: border-box;
+    color: white;
+}
+.user{
+    width: 90%;
+    height: 13%;
+}
+.usernameInput{
+    position: relative;
+    left: 31%;
+    top: 4.9em;
+}
+.usermailId{
+    position: relative;
+    top: 6.5em;
+    left: 39%;
+}
+.usermail{
+    position: relative;
+    top: 8.4em;
+    right: 39%;
+    text-transform: capitalize;
+}
+.userpasswordInput{
+    position: relative;
+    top: 8em;
+    left: 39%;
+}
+.label{
+    font-family: monospace;
+    color: azure;
+}
+.username{
+    text-transform: capitalize;
+    position: relative;
+    top: 5em;
+    left: 17%;
+}
+.userpassword{
+    position: relative;
+    top: 9.8em;
+    right: 31%;
+    text-transform: capitalize;
+}
+.usersubmitDiv{
+    position: relative;
+    top: 37%;
+    left: 5%;
+}
+#user-submit{
+    position: relative;
+    top: 12em;
+    right: 7%;
+    box-shadow: 3px 3px 3px blue;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+.signIn{
+    height: 35%;
+}
+.signinpass{
+    top: 6em;
+    left: 47%;
+}
+.signinpasslabel{
+    right: 47%;
+    top: 8em;
+}
+.account-submit{
+    top: 11em;
+    right: 21%;
+}
+.forget{
+    top: 10em;
+    right: 32%;
+}
+#todo-page{
+    height: 100%;
+    position: relative;
+    background-color:whitesmoke;
+} 
+#todoBar{
+    position: relative;
+    height: 8%;
+    background-color: lightcoral;
+}
+.appIconDiv{
+    width: 3.8%;
+    height: 100%;
 }
 .material-symbols-outlined{
     margin: 25% 0% 0% 25%;
     color: white;
-}
-.menu-app-outlet{
-    width: 3.8%;
-    height: 100%;
-}
-.menu-app-outlet:hover{
-    background-color: rgb(50, 88, 145);
     cursor: pointer;
 }
-#login-Div{
-    width: 30%;
-    height: 25%;
-    background-color: azure;
-    position: relative;
-    bottom: 63%;
-    left: 34%;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 12px red;
-    /* display: inline-block; */
-}
-#login-id-text{
-    text-transform: capitalize;
-    font: 600 larger monospace;
-    padding: 12% 0% 0% 28%;
-    text-shadow: 0px 0px 1px red;
-}
-#input-text{
-    width: 48%;
-    height: 10%;
-    outline: none;
-    border: none;
-    margin: 5% 0% 0% 10%;
-    box-shadow: 0px 0px 4px cadetblue;
-    border-radius: 7px;
-    padding: 0% 0% 0% 3%;
-    font-size: 80%;
-}
-#login-submit{
-    width: 16%;
-    height: 11%;
-    background-color: blue;
-    border: none;
-    border-radius: 11px;
-    margin: 0% 0% 0% 10%;
-    color: azure;
-}
-.closer{
-    position: absolute;
-    bottom: 24%;
-    left: 35%;
-    color: rgb(50, 88, 145);
+.appIconDiv:hover{
+    background-color: rgb(242, 87, 87);
     cursor: pointer;
 }
-.reload{
+.todoButton{
     font: 600 95% 'Poppins', sans-serif;
     position: absolute;
     top: 0%;
     left: 4.2%;
     height: 100%;
     color: white;
-    background-color: transparent;
+    background-color: lightcoral;
     border: transparent;
 }
-.reload:hover{
+.todoButton:hover{
      text-decoration: underline;
      cursor: pointer;
-}
-.search-icon{
-    color: blue;
-    opacity: 0.7;
-    transform: rotate( 86deg);
-    position: absolute;
-    bottom: 9%;
-    left: -24.7%;
-    cursor: pointer;
-}
-#info:hover{
-   transform: scale(1.01);
-} 
-
-#search{
-    position: absolute;
-    width: 27%;
-    height: 53%;
-    left: 33%;
-    bottom: 22%;
-    cursor: text;
-    outline: none;
-    border: none;
-    background-color:white;
-}
-#filterDiv{
-    width: 73%;
-    height: 89%;
-    position: relative;
-    bottom: 89%;
-    left: 25%;
-    background-color: aquamarine;
 }
 #search-bar{
     background-color: white;
@@ -121,23 +170,32 @@ html,body{
     border-radius: 5px;
     cursor: pointer;
 }
-.left-menu-bar{
-    background-color: white;
-    width: 23%;
-    height: 92%;
-    /* display: inline-block; */
-}
-.new-list{
-    width: 75%;
-    height: 10%;    
-}
-
-.task-add{
-    width: 73%;
-    height: 88%;
+.search-icon{
+    color: blue;
+    opacity: 0.7;
+    transform: rotate( 86deg);
     position: absolute;
-    top: 12%;
-    left: 25%;
+    bottom: 9%;
+    left: -24.7%;
+    cursor: pointer;
+}
+#search{
+    position: absolute;
+    width: 27%;
+    height: 53%;
+    left: 33%;
+    bottom: 22%;
+    cursor: text;
+    outline: none;
+    border: none;
+    background-color:white;
+}
+.closer{
+    position: absolute;
+    bottom: 24%;
+    left: 35%;
+    color: rgb(50, 88, 145);
+    cursor: pointer;
 }
 #search-box{
     width: 73%;
@@ -147,14 +205,30 @@ html,body{
     left: 25%; 
     background-color:  white;
 }
-
-.task{
+#left-menu-bar{
     background-color: white;
+    width: 23%;
+    height: 92%;
+    /* display: inline-block; */
+}
+.leftMenuBarList{
+    width: 75%;
+    height: 10%; 
+    /* background-color: rgb(169, 85, 249);    */
+}
+.task-add{
+    width: 73%;
+    height: 88%;
+    position: absolute;
+    top: 12%;
+    left: 25%;
+}
+.task{
+    background-color: #fee0e0;
     width: 100%;
     height: 9%;
     position: static;
 }
-
 #text-list{
     width: 84%;
     height: 58%;
@@ -165,31 +239,15 @@ html,body{
     /* box-sizing: border-box; */
 }
 
-.completed-child1{
-    border: 1px solid red;
-    text-transform: capitalize;
-    font-family: 'Poppins', sans-serif;
-    width: 100%;
-    height: 3em;
-    contain: content;
-}
-
 #add{
     height: 70%;
     margin-left: 0.5%;
-    background-color: blue;
+    background-color:  #e93333;
     color: white;
-    border-color: blue;
+    border-color:rgb(244, 148, 148);
     border-radius: 4px;
     cursor: pointer;
 }
-
-#task-info{ 
-    width: 90%;
-    margin: 3% 0% 0% 4%;
-    min-height: 0%;
-}
-
 li{
     list-style: none;
     height: 26px;
@@ -197,36 +255,21 @@ li{
     width: 75%;
     margin: 2% 0% 0% 5%;;
     border-radius: 7px;
-    background-color: ghostwhite;
+    background-color: #f4d3d3;
     box-shadow: 0px 0px 5px 1px;
     position: relative;
 }
-
 #list-Text{
     background-color: ghostwhite;
     width: 98%;
     border: none;
     outline: none; 
 }
-
-#task-status{
-    width: 90%;
-    min-height: 7%;
-    margin: 0% 0% 0% 4%;
-}
-
-.task-details{
-    height: 91%;
-    overflow: auto;
-}
-#task-completion{
-    background-color: white;
-    height: 7%;
-    padding: 2% 0% 0% 4%;
-    margin: 2% 0% 0% 0%;
-    text-transform: capitalize;
-    font:600 100% Arial, Helvetica, sans-serif;
-    display: none;
+#check-box{
+    position: absolute;
+    left: 1%;
+    top: 15%;
+    height: 60%;
     cursor: pointer;
 }
 #button{
@@ -243,19 +286,6 @@ li{
     border-color: beige;
     cursor: pointer;
 }
-
-#check-box{
-    position: absolute;
-    left: 1%;
-    top: 15%;
-    height: 60%;
-    cursor: pointer;
-}
-
-.check-box-clr{
-    background-color: blue;
-}
-
 .text{
     background-color: lightgreen;
     height: 29px;
@@ -270,7 +300,35 @@ li{
     border-color: beige;
     cursor: pointer;
 }
-
+#task-details{
+    height: 91%;
+    overflow: auto;
+}
+#task-info{ 
+    width: 90%;
+    margin: 3% 0% 0% 4%;
+    min-height: 0%;
+}
+#task-completion{
+    background-color: white;
+    height: 7%;
+    padding: 2% 0% 0% 4%;
+    margin: 2% 0% 0% 0%;
+    text-transform: capitalize;
+    font:600 100% Arial, Helvetica, sans-serif;
+    display: none;
+    cursor: pointer;
+}
+#task-status{
+    width: 90%;
+    min-height: 7%;
+    margin: 0% 0% 0% 4%;
+}
+.alert-box-message{
+    text-transform: capitalize;
+    font:600 100% monospace;
+    padding: 4% 0% 0% 13%;
+}
 #alert-box {
     width: 24%;
     height: 20%;
@@ -281,13 +339,6 @@ li{
     border-radius: 5px;
     box-shadow: 0px 0px 4px 1px lightgrey;
 }
-
-.alert-box-message{
-    text-transform: capitalize;
-    font:600 100% monospace;
-    padding: 4% 0% 0% 13%;
-}
-
 .remove{
     width: 16%;
     height: 20%;
@@ -298,7 +349,34 @@ li{
     border: groove lightgray;
     cursor: pointer;
 }
-
 .cancel{
     margin: 3% 0% 0% 15%;
+}
+.userAccountDiv{
+    width: 4%;
+    height: 98%;
+    background-color: lightcoral;
+    position: relative;
+    bottom: 5em;
+    left: 76.7em;
+}
+#userNameDiv{
+    background-color: lightcoral;
+    font-family: monospace;
+    color: white;
+    text-transform: capitalize;
+    position: relative;
+    width: fit-content;
+    bottom: 8.5em;
+    left: 91em;
+}
+#logOutDiv{
+    background-color: lightcoral;
+    position: relative;
+    bottom: 5.95em;
+    left: 76.6em;
+    width: fit-content;
+    height: fit-content;
+    border: 2px groove lightcoral;
+    cursor: pointer;
 }

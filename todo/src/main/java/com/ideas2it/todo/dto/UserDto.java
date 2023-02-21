@@ -10,5 +10,7 @@ import lombok.Setter;
 public class UserDto {
 	private Integer id;
 	private String name;
+	private String mailId;
+	private String password;
 	private List<TaskDto> taskDto;
 }

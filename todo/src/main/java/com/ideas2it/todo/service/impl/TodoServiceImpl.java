@@ -6,6 +6,7 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.ideas2it.todo.dto.TaskDto;
 import com.ideas2it.todo.model.Task;
@@ -27,16 +28,10 @@ public class TodoServiceImpl implements TodoService{
 		todoRepo.save(task);		
 	}
 
-	@Override
-	public List<TaskDto> readTask() {
-		List<Task> task = todoRepo.findAll();
-		List<TaskDto> taskDto = task.stream().map(t -> modelmap.map(t, TaskDto.class)).toList(); 
-		return taskDto;
-	}
 
 	@Override
-	public void deleteTask(TaskDto taskDto) {
-		todoRepo.deleteById(taskDto.getId());
+	public void deleteTask(Integer id) {
+		todoRepo.deleteById(id);
 	}
 
 	@Override

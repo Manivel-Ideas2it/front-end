@@ -11,4 +11,5 @@ import com.ideas2it.todo.model.Task;
 public interface TodoRepository extends JpaRepository<Task, Integer>{
 
 	List<Task> findByTaskContains(String task);
+	
 }

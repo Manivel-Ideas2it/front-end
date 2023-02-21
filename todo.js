@@ -1,46 +1,247 @@
-window.addEventListener("load",() =>{
-    createUser();
-    loadedList();
-    searchEvent();
+
+window.addEventListener("load",function(){
+    userSignUp();
 });
+const urlTodo = 'http://localhost:8080/api/v1/todo';
 
-const url = 'http://localhost:8080/api/v1/todo';
+function userSignUp(){
+    let container = document.getElementById("main-container");
+    let login = document.createElement("div");
+    login.id = "signUp-Div";
+    container.appendChild(login);
 
-function createUser(){
-    let loginDiv = document.createElement("div");
-    loginDiv.id = "login-Div";
-    document.body.appendChild(loginDiv);
-    let text = document.createElement("p");
-    text.innerText = "enter the login id";
-    text.id = "login-id-text";
-    loginDiv.appendChild(text);
-    let inputText = document.createElement("input");
-    inputText.id = "input-text";
-    // inputText.
-    let submit = document.createElement("button");
-    submit.id = "login-submit";
-    submit.innerText="send";
-    loginDiv.appendChild(inputText);
-    loginDiv.appendChild(submit);
+    login.innerText = "welcome ideas2it todo";
+    let signIn = document.createElement("button");
+    signIn.innerText = "sign-in";
+    signIn.className="sign in";
+
+    let signUp = document.createElement("button");
+    signUp.innerText = "sign-up";
+    signUp.className = "sign up";
+    login.appendChild(signUp); 
+    login.appendChild(signIn);
+
+    signUp.addEventListener("click",function(){
+        signUpPage(login);
+    });   
+    signIn.addEventListener("click",function(){
+        signInPage(login);
+    });
 }
 
-function searchEvent(){
-    let menuBar = document.getElementById("menu-container");
+function signUpPage(element){
+    element.remove();
+    let signUpPageDiv = document.createElement("div");
+    signUpPageDiv.className = "sign-page";
+    let container = document.getElementById("main-container");
+    container.appendChild(signUpPageDiv);
+    let signUpform = document.createElement("form");
+  
+    let usernameLabel = document.createElement("label");
+    usernameLabel.innerText = "name";
+    usernameLabel.className = "username label";
+    let userName = document.createElement("input");
+    userName.className = "usernameInput";
+    userName.focus();
+    userName.required = true;
+
+    let userMailLabel = document.createElement("label");
+    userMailLabel.innerText = "mail-Id";
+    userMailLabel.className = "usermail label";
+    let userMailId = document.createElement("input");
+    userMailId.className = "usermailId";
+    userMailId.required = true;
+
+    let userpasswordLabel = document.createElement("label");
+    userpasswordLabel.innerText = "password";
+    userpasswordLabel.className = "userpassword label";
+    let userPassword = document.createElement("input");
+    userPassword.className = "userpasswordInput";
+    userPassword.required = true;
+
+    let submit = document.createElement("button");
+    submit.type = "submit";
+    submit.id = "user-submit";
+    submit.innerText = "submit";
+
+    signUpPageDiv.appendChild(signUpform);
+    signUpform.appendChild(usernameLabel);
+    signUpform.appendChild(userName);
+    signUpform.appendChild(userMailLabel);
+    signUpform.appendChild(userMailId);
+    signUpform.appendChild(userpasswordLabel);
+    signUpform.appendChild(userPassword);
+    signUpform.appendChild(submit);
+   
+    submit.addEventListener('click',function(){
+        user = {
+            name : userName.value,
+            mailId : userMailId.value,
+            password : userPassword.value
+        };
+        createUser(user,signUpPageDiv);
+    });
+}
+
+function signInPage(element){
+    element.remove();
+    let container = document.getElementById("main-container");
+    let sigIn = document.createElement("div");
+    sigIn.className = "sign-page signIn";
+    container.appendChild(sigIn);
+
+    let usernameLabel = document.createElement("label");
+    usernameLabel.innerText = "username";
+    usernameLabel.className = "username label";
+    let userName = document.createElement("input");
+    userName.className = "usernameInput";
+    // userName.focus();
+    // userName.required = true;
+
+    let userpasswordLabel = document.createElement("label");
+    userpasswordLabel.innerText = "password";
+    userpasswordLabel.className = "userpassword label signinpasslabel";
+    let userPassword = document.createElement("input");
+    userPassword.className = "userpasswordInput signinpass";
+    // userPassword.required = true;
+
+    let forget = document.createElement("button");
+    forget.innerText = "forget";
+    forget.className="sign in forget";
+    let submit = document.createElement("button");
+    submit.innerText = "submit";
+    submit.className = "sign up account-submit";
+
+    sigIn.appendChild(usernameLabel);
+    sigIn.appendChild(userName);
+    sigIn.appendChild(userpasswordLabel);
+    sigIn.appendChild(userPassword);
+    sigIn.appendChild(forget);
+    sigIn.appendChild(submit);
+
+    submit.addEventListener('click',function(){
+        userCheck(userName.value,userPassword.value);
+    });
+};
+
+function createTodo(data){
+    let todoPage = document.createElement("div");
+    todoPage.id = "todo-page";
+    document.body.appendChild(todoPage);
+
+    let todoBar = document.createElement("div");
+    todoBar.id = "todoBar";
+
+    let appIconDiv = document.createElement("div");
+    appIconDiv.className = "appIconDiv";
+
+    let appIcon = document.createElement("span");
+    appIcon.innerText = "apps"
+    appIcon.className = "material-symbols-outlined";
+
+    let todo = document.createElement("button");
+    todo.className = "todoButton";
+    todo.innerText = "TO DO";
+
     let searchBar = document.createElement("div");
     searchBar.id = "search-bar";
-    menuBar.appendChild(searchBar);
+    
     let searchIcon = document.createElement("span");
     searchIcon.className = "material-symbols-outlined search-icon";
     searchIcon.innerText = "search";
+
+    let userAccountDiv = document.createElement("div");
+    userAccountDiv.className = "userAccountDiv";
+
+    let userAccountIcon = document.createElement("span");
+    userAccountIcon.className = "material-symbols-outlined";
+    userAccountIcon.innerText = "account_circle";
+
+    let leftMenuBar = document.createElement("div");
+    leftMenuBar.id = "left-menu-bar";
+
+    let leftMenuBarList = document.createElement("div");
+    leftMenuBarList.className = "leftMenuBarList";
+ 
+    let taskaddDiv = document.createElement("div");
+    taskaddDiv.className = "task-add";
+
+    let taskAdd = document.createElement("div");
+    taskAdd.className = "task"; 
+
+    let taskAddInput = document.createElement("input");
+    taskAddInput.type = "text";
+    taskAddInput.id = "text-list";
+    taskAddInput.placeholder = "Add a task";
+
+    let addButton = document.createElement("button");
+    addButton.innerText = "add";
+    addButton.id = "add";
+    addButton.type = "button";
+
+    let addedDetailDiv = document.createElement("div");
+    addedDetailDiv.id = "task-details";
+
+    let addedTaks= document.createElement("div");
+    addedTaks.id ="task-info";
+
+    let completedCountDiv = document.createElement("div");
+    completedCountDiv.id="task-completion";
+
+    let completedTaskStatus = document.createElement("div");
+    completedTaskStatus.id="task-status";
+
+    let userNameDiv = document.createElement("div");
+    userNameDiv.id = "userNameDiv";
+    userNameDiv.innerText = data.name;
+
+    todoPage.appendChild(todoBar);
+    todoBar.appendChild(appIconDiv);
+    appIconDiv.appendChild(appIcon);
+    todoBar.appendChild(todo);
+    todoBar.appendChild(searchBar);
     searchBar.appendChild(searchIcon);
+    todoBar.appendChild(userAccountDiv);
+    todoBar.appendChild(userNameDiv);
+    userAccountDiv.appendChild(userAccountIcon);
+    todoPage.appendChild(leftMenuBar);
+    leftMenuBar.appendChild(leftMenuBarList);
+    todoPage.appendChild(taskaddDiv);
+    taskaddDiv.appendChild(taskAdd);
+    taskAdd.appendChild(taskAddInput); 
+    taskAdd.appendChild(addButton);
+    taskaddDiv.appendChild(addedDetailDiv);
+    addedDetailDiv.appendChild(addedTaks);
+    addedDetailDiv.appendChild(completedCountDiv);
+    addedDetailDiv.appendChild(completedTaskStatus);
+
+    readList(data.id);
     searchBar.addEventListener("click",function(){
         searchDivision();
     });
+    addButton.addEventListener("click",function(){
+        add(data.id,taskAddInput);
+    });
+    userAccountIcon.addEventListener("click",function(){
+        logOut();
+    })    
 }
+function logOut(){
+    let logOutDiv = document.createElement("div");
+    logOutDiv.id = "logOutDiv";
+    logOutDiv.innerText = "signOut"; 
+    document.getElementById("todoBar").appendChild(logOutDiv);
+    logOutDiv.addEventListener("click",function(){
+        alert(pageExit);
+        pageExit =0;
+    });
+   
+}
+
 function searchDivision(){
     let searchInput = document.createElement("input");
     searchInput.id = "search";
-    let menubar = document.getElementById("menu-container");
+    let menubar = document.getElementById("todoBar");
     menubar.appendChild(searchInput);
     searchInput.focus();
     let closer = document.createElement("span");
@@ -64,41 +265,11 @@ function createSerachDiv(element){
     element.then(result => {
         result.forEach(e => {
             let list = createListDivision(e);
-            creatDiv.appendChild(list);
-            console.log(e);
-            console.log(list.childNodes[1].value);   
+            creatDiv.appendChild(list); 
         });
     });
     document.body.appendChild(creatDiv);  
 };
-
-let input = document.getElementById("text-list");
-input.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        add();
-    }
-});
-
-division = document.getElementById("task-completion");
-division.addEventListener("click",function(){
-if(document.getElementById("task-status").style.display == "none"){
-    document.getElementById("task-status").style.display = "block";
-} else{
-    document.getElementById("task-status").style.display ="none";
-}
-});
-
-
-function read(data){
-    let list = createListDivision(data);
-    document.getElementById("task-info").appendChild(list);
-    if(data.complete){
-        data.complete = !(data.complete);
-        list.childNodes[0].checked = true;
-        checkList(list.childNodes[0],data);
-    }
-    document.getElementById("text-list").value = "";
-}
 
 function createListDivision(data){
     let list = document.createElement("li");
@@ -120,7 +291,7 @@ function createListDivision(data){
     remove.innerText = "remove";
     text.className = "text";
     text.innerText = "edit";
-    check.addEventListener("change",function(){
+    check.addEventListener("click",function(){
         checkList(check,data);
     });
     remove.addEventListener('click',function(){
@@ -129,7 +300,39 @@ function createListDivision(data){
     text.addEventListener('click',function(){
         changeContent(text,data);
     });
+    if(data.complete){
+        data.complete = !(data.complete);
+        list.childNodes[0].checked = true;
+        checkList(list.childNodes[0],data);
+    }
     return list;
+}
+
+function checkList(element,data){
+    let completedTaskStatus = document.getElementById("task-status");
+    if(element.checked && data.complete == false){
+        completedTaskStatus.appendChild(element.parentNode);
+        element.parentNode.childNodes[2].style.display = "none";
+        element.parentNode.childNodes[3].style.left =  "101%";
+        updateList(data);
+    } else {
+        document.getElementById("task-info").appendChild(element.parentNode);
+        element.parentNode.childNodes[2].style.display = "block";
+        element.parentNode.childNodes[3].style.left =  "109%";
+        updateList(data);
+    } 
+    completedTaskCount();
+}
+
+function completedTaskCount(){
+    let countValue = document.getElementById("task-status").childElementCount;
+    alert(countValue);
+    if(countValue == 0){
+        document.getElementById("task-completion").style.display="none";
+    } else {
+        document.getElementById("task-completion").innerText = "completed - " + countValue;
+        document.getElementById("task-completion").style.display="block";
+    }
 }
 
 function removelist(element,data) {
@@ -153,55 +356,20 @@ function removelist(element,data) {
         remove.remove();
         removeConform(dropListelemnt);
         completedTaskCount();
-        dropList(data);
+        dropList(data.id);
     });
     removeListCancel.addEventListener('click', function() {
         remove.remove();
-        dropList(data);
+        dropList(data.id);
     });
-} 
-
-function checkList(element,data){
-    let listTwo = document.getElementById("task-status");
-
-    if(element.checked && data.complete == false){
-        listTwo.appendChild(element.parentNode);
-        element.parentNode.childNodes[2].style.display = "none";
-        element.parentNode.childNodes[3].style.left =  "101%";
-        completedTask(data);
-    } else {
-
-        document.getElementById("task-info").appendChild(element.parentNode);
-        element.parentNode.childNodes[2].style.display = "block";
-        element.parentNode.childNodes[3].style.left =  "109%";
-        completedTask(data);
-    } 
-    completedTaskCount();
 }
 
-function completedTaskCount(count){
-    let countValue = document.getElementById("task-status").childElementCount;
-    if(countValue == 0){
-        document.getElementById("task-completion").style.display="none";
-    } else {
-        document.getElementById("task-completion").innerText = "completed - " + countValue;
-        document.getElementById("task-completion").style.display="block";
+function removeConform(element) {
+    if (element.childNodes[2].innerHTML == "edit") {
+        element.remove();
+    } else{
+        alert("save the text after that remove the task...");
     }
-}
-
-function completedTask(data){
-    data.complete = !(data.complete);
-    updateList(data);
-}
-
-function loadedList(){
-    // document.getElementById("task-info").innerHTML = " ";
-    // document.getElementById("task-status").innerHTML = " ";
-    readList().then((result) => {
-            for(let task of result){
-                read(task);
-            }
-    });    
 }
 
 function changeContent(element,elementData){
@@ -219,48 +387,92 @@ function changeContent(element,elementData){
     }
 }
 
-function removeConform(element) {
-     if (element.childNodes[2].innerHTML == "edit") {
-        element.remove();
-     } else{
-        alert("save the text after that remove the task...");
-     }
+// let input = document.getElementById("text-list");
+// input.addEventListener("keydown", function(event) {
+//     if (event.key === "Enter") {
+//         add();
+//     }
+// });
+
+// division = document.getElementById("task-completion");
+// division.addEventListener("click",function(){
+// if(document.getElementById("task-status").style.display == "none"){
+//     document.getElementById("task-status").style.display = "block";
+// } else{
+//     document.getElementById("task-status").style.display ="none";
+// }
+// });
+
+function createUser(object,element){
+    let url ='http://localhost:8080/api/v1/user';
+    let request =  {
+    method: 'POST',
+    body: JSON.stringify(object),
+    headers: {
+        'Content-Type': 'application/json'
+        }
+    };
+    fetch(url,request).then(()=> 
+    signInPage((element)));
+};
+
+async function userCheck(userName,password){
+    let url ='http://localhost:8080/api/v1/user?userName='+userName+'&password=' +password;
+    let data = await fetch(url).then(response => response.json());
+    createTodo(data);
 }
 
-function add(){
-    let data = { task : document.getElementById("text-list").value};
-    if( data.task == ""){
+function add(id,data){
+    let newTask = { task :data.value};
+    
+    if( newTask.task == ""){
         alert("you need to write something...");
         return false;
     }
     let request =  {
-    method: 'POST',
-    body: JSON.stringify(data),
+    method: 'PATCH',
+    body: JSON.stringify(newTask),
     headers: {
         'Content-Type': 'application/json'
         }
     };
-    fetch(url,request).then(() => loadedList());
+    fetch('http://localhost:8080/api/v1/user?id='+id,request).then(response => response.json().then(result => loadedList(result.taskDto)));
 }
 
-async function readList(){
-    const url = 'http://localhost:8080/api/v1/todo/';
-    let request = {
-        method : 'GET'
-    };
-    let data = await fetch(url,request);
-    return data.json();
+function loadedList(data){
+    document.getElementById("task-info").innerText ="";
+    document.getElementById("task-status").innerText="";
+
+    // readList().then((result) => {
+    //     for(let task of result){
+    //         read(task);
+    //     }
+    // });   
+    for(let task of data){
+        read(task);
+    }
 }
 
-function dropList(element){
+function read(data){
+    let list = createListDivision(data);
+    document.getElementById("task-info").appendChild(list);
+    document.getElementById("text-list").value = "";
+}
+
+async function readList(id){
+    const url = 'http://localhost:8080/api/v1/user/?id='+id;
+    let data = await fetch(url);
+    data.json().then(value => loadedList(value.taskDto));
+}
+
+function dropList(id){
     let request =  {
     method: 'DELETE',
-    body: JSON.stringify(element),
     headers: {
         'Content-Type': 'application/json'
         }
     };
-    fetch(url,request);
+    fetch( 'http://localhost:8080/api/v1/todo?id='+id,request);
 }
 
 function updateList(element){
@@ -271,11 +483,11 @@ function updateList(element){
         'Content-Type': 'application/json'
         }
     };
-    fetch(url,request);
+    fetch(urlTodo,request);
 }
 
-async function searchList(element){
-    const url = 'http://localhost:8080/api/v1/todo?name=' + element;
-    let data = await fetch(url);
-    return data.json();
-}
+// async function searchList(element){
+//     const url = 'http://localhost:8080/api/v1/todo?name=' + element;
+//     let data = await fetch(url);
+//     return data.json();
+// }

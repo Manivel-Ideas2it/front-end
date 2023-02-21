@@ -15,13 +15,12 @@ public interface TodoService {
 
 	void addTask(TaskDto taskDto);
 
-	List<TaskDto> readTask();
-
-	void deleteTask(TaskDto taskDto);
-
 	void updateTask(TaskDto taskDto);
 	
 //	void completeTask(TaskDto taskDto);
 	
 	List<TaskDto> searchTask(String task);
+
+	void deleteTask(Integer id);
+
 }
