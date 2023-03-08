@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,7 +33,7 @@ public class TodoController {
 	
 	@PostMapping()
 	public void addTask(@RequestBody TaskDto taskDto) {
-	todoService.addTask(taskDto);
+	 todoService.addTask(taskDto);
 	}
 
 
@@ -48,9 +47,14 @@ public class TodoController {
 		todoService.updateTask(taskDto);
 	}
 	
-	@GetMapping
+	@GetMapping("/")
 	public  List<TaskDto> searchTask(@RequestParam("name") String name){
 		return todoService.searchTask(name);
+	}
+	
+	@GetMapping
+	public List<TaskDto> getTask(@RequestParam("id") Integer id){
+		return todoService.getTask(id);
 	}
 	
 }

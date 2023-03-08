@@ -12,4 +12,5 @@ public interface TodoRepository extends JpaRepository<Task, Integer>{
 
 	List<Task> findByTaskContains(String task);
 	
+	List<Task> findByUserId(Integer id);
 }

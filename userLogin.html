@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="todo.css">
+    <title>sign-in</title>
+</head>
+<body>
+    <div class="todo login">
+        <div class="welcomeDiv accountCreation">
+            <p class="userAccount">sign-in</p>
+            <form id="loginForm" action="todo.html" class="userForm" onsubmit="userData()">
+                <div class="userNameDiv">
+                    <label for="" class="signInDetail">userName</label>
+                    <input type="email" class="signInDetails" id="userName" placeholder="mail-id" required autofocus>
+                </div>
+                 <div class="userMailDiv">
+                    <label for="" class="signInDetail">password</label>
+                    <input type="password" class="signInDetails signInpassword" id="password" placeholder="password" required>
+                </div>
+                <div class="signInSubmitDiv">
+                    <button type="submit" class="userSubmit">submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="userLogin.js"></script>
+</body>
+</html>

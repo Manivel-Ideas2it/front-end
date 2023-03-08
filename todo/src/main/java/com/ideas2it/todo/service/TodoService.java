@@ -23,4 +23,6 @@ public interface TodoService {
 
 	void deleteTask(Integer id);
 
+	List<TaskDto> getTask(Integer id);
+
 }

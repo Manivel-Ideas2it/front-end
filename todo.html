@@ -3,14 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="author" content="manivel">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="todo.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
     <title>to-do</title>
 </head>
 <body>
-    <div id="main-container"></div>
+   <div class="todo">
+        <div class="todoMenuBar">
+            <div class="appIconDiv">
+                <span class="material-symbols-outlined appIcon icon">apps</span>
+            </div>
+            <div class="todoButtonDiv">
+                <button type="button" class="todoButton">To Do</button>
+            </div>  
+            <div class="taskSearchDivBar">
+                <div class="taskSearchDiv" id="taskSearchDiv">
+                    <span class="material-symbols-outlined searchIcon icon">search</span>
+                    <input type="text" placeholder="Search" class="searchField" id="searchField">
+                </div>
+                <div class="searchCloserDiv" id="searchCloserDiv">
+                    <span class="material-symbols-outlined searchCloser icon" id="searchCloser">close</span>
+                </div>
+            </div>
+            <div class="taskBarUserDiv">
+               <div class="settingIconDiv taskBarUser">
+                <span class="material-symbols-outlined settingsIcon icon" style="font-size: 20px;">
+                    settings
+                </span>
+               </div>
+               <div class="questionMarkIconDiv taskBarUser">
+                <span class="material-symbols-outlined settingsIcon icon" style="font-size: 20px;">
+                    question_mark
+                </span>
+               </div>
+               <div class="megaphoneIconDiv taskBarUser">
+                <span class="material-symbols-outlined  settingsIcon icon" style="font-size: 22px;">
+                    campaign
+                    </span>
+               </div>
+               <div class="userIconDiv taskBarUser" id="usericonDiv">
+                    <div class="circleDiv">
+                        <span class="dot" id="userIcon"></span>
+                    </div>
+               </div>
+            </div>         
+        </div>
+        <div class="todoBody">
+            <div class="todoBodyLeft" id="todoBodyLeft">
+                <div class="leftMenuHeaderDiv">
+                    <div class="sideMenuBarDiv" id="sideMenuBarDiv">
+                        <span class="material-symbols-outlined sideMenuBarIcon" style="font-size: 18px;">menu</span>
+                    </div>
+                </div>
+                <div class="leftMenuBodyDiv">
+                    <div class="leftMenuContent">
+                        <div class="leftMenuContentMyDay sidemenuContent">
+                            <div class="leftMenuContentMyDayIcon leftMenuContentIcon">
+                                <span class="material-symbols-outlined iconBody" style="font-size: 18px;">wb_sunny</span>
+                            </div>
+                            <div class="leftMenuContentMyDayName leftMenuContentName">
+                                my day
+                            </div>
+                        </div>
+                        <div class="leftMenuContentImportant sidemenuContent">
+                            <div class="leftMenuContentImportantIcon leftMenuContentIcon">
+                                <span class="material-symbols-outlined iconBody"  style="font-size: 18px;">
+                                    star
+                                </span>
+                            </div>
+                            <div class="leftMenuContentImportantName leftMenuContentName">
+                                important
+                            </div>
+                        </div>
+                        <div class="leftMenuContentPlanned sidemenuContent">
+                            <div class="leftMenuContentPlannedIcon leftMenuContentIcon">
+                                <span class="material-symbols-outlined iconBody"  style="font-size: 18px;">
+                                    event_note
+                                </span>
+                            </div>
+                            <div class="leftMenuContentPlannedName leftMenuContentName">
+                                planned
+                            </div>
+                        </div>
+                        <div class="leftMenuContentAssigned sidemenuContent">
+                            <div class="leftMenuContentAssignedIcon leftMenuContentIcon">
+                                <span class="material-symbols-outlined iconBody"  style="font-size: 18px;">
+                                    person
+                                </span>
+                            </div>
+                            <div class="leftMenuContentAssignedName leftMenuContentName">
+                                assigned to me
+                            </div>
+                        </div>
+                        <div class="leftMenuContentTasks sidemenuContent" id="oldList">
+                            <div class="leftMenuContentTasksIcon leftMenuContentIcon">
+                                <span class="material-symbols-outlined iconBody"  style="font-size: 18px;">home</span>
+                            </div>
+                            <div class="leftMenuContentTasksName leftMenuContentName">
+                              <span>tasks</span>  
+                            </div>
+                        </div>
+                        <div class="horizondalDiv">
+                            <hr class="horizondalLine">
+                        </div>
+                    </div>
+                    <div class="leftMenuContentList">
+                        <div class="leftMenuAddedContentList" id="createdNewList">
+                        </div>
+                        <div class="leftMenuContentCreateDiv">
+                            <div class="leftMenuContentCreateInnerDivOne">
+                                <div class="listMenuInnerAddDiv">
+                                    <div class="leftBarAddIconDiv">
+                                        <span class="material-symbols-outlined">
+                                            add
+                                        </span>
+                                    </div>
+                                    <input type="text" class="leftMenuTaskList" id="leftMenuTaskList" placeholder="new list">
+                                </div>
+                            </div>
+                            <div class="leftMenuContentCreateInnerDivTwo">
+                                <div class="leftBarAddFileIconDiv">
+                                    <span class="material-symbols-outlined" style="font-size: 22px;">
+                                        add_notes
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="leftMenuFooterDiv">
+                    <div class="footerDivOne footerDiv">
+                        <div class="todoIconDiv">
+                            <span class="material-symbols-outlined iconBody" style="font-size: 18px;">
+                                mail
+                            </span>
+                        </div>
+                    </div>
+                    <div class="footerDivTwo footerDiv">
+                        <div class="todoIconDiv">
+                            <span class="material-symbols-outlined iconBody" style="font-size: 18px;">
+                                event_note
+                            </span>
+                        </div>
+                    </div>
+                    <div class="footerDivThree footerDiv">
+                        <div class="todoIconDiv">
+                            <span class="material-symbols-outlined iconBody" style="font-size: 18px;">
+                                group
+                            </span>
+                        </div>
+                    </div>
+                    <div class="footerDivFour footerDiv">
+                        <div class="todoIconDiv">
+                            <span class="material-symbols-outlined iconBody" style="font-size: 18px;">
+                                attach_file
+                            </span>
+                        </div>
+                    </div>
+                    <div class="footerDivFive footerDiv">
+                        <div class="todoIconDiv">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">
+                                done_outline
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="todoBodyRight" id="todoBodyRight">
+                <div class="dateAndTimeDiv">
+                    <div class="dateAndTimeInnerDiv">
+                        <div class="dateAndTimeHeading">
+                            <div class="sunIconDiv">
+                                <span class="material-symbols-outlined iconBody"  style="font-size: 22px;">
+                                    wb_sunny
+                                </span>
+                            </div>
+                            <div class="contentHeading">
+                                <span class="contentHeadingName">my day</span>
+                            </div>
+                        </div>
+                        <div class="yearAndDayDiv">
+                            <span id="yearAndDate"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="taskBody">
+                    <div class="taskAddingDiv" id="taskAddingDiv">
+                        <div class="taskAddingCircleDiv" id="taskAddingCircleDiv">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">
+                                circle
+                            </span>
+                        </div>
+                        <div class="taskInputFieldDiv">
+                            <input type="text" placeholder="Add Task" class="taskInputField" id="taskInputField">
+                        </div>
+                        <div class="addButtonDiv">
+                            <div class="editIconDiv">
+                                <span class="material-symbols-outlined  editIcon iconBody" style="font-size: 18px;">
+                                   edit
+                                </span>
+                            </div>
+                            <div class="addIconDiv">
+                                <span class="material-symbols-outlined iconBody addIcon" id="addIcon" style="font-size: 25px;">
+                                    add
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="addedTaskDiv">
+                        <div class="addedTask" id="addedTask">
+                            <span class="material-symbols-outlined" id="editIcon">
+                                edit
+                            </span>
+                            <span class="material-symbols-outlined" id="deleteIcon">
+                                    delete
+                            </span>
+                        </div>
+                        <div class="completedTaskCount" id="completedTaskCount">
+                            <span class="material-symbols-outlined arrowSet" id="arrowSet">
+                                chevron_right
+                            </span>
+                            <div class="countValue"></div>
+                        </div>
+                        <div class="completedTasks" id="completedTasks"></div>
+                    </div>
+                </div>
+                <div class="searchResult" id="searchResult"></div>
+            </div>
+        </div>
+        <div class="signOutDiv"id="signOutDiv">
+            <p id="signOut">signOut</p>
+        </div>
+   </div>
    <script src="todo.js"></script>
 </body>
 </html>

@@ -2,12 +2,10 @@ package com.ideas2it.todo.model;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +20,7 @@ public class User {
 	private String name;
 	private String mailId;
 	private String password;
-	@OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+	private boolean isActive;
+	@OneToMany(mappedBy = "user")
 	private List<Task> task;
 }

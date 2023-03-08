@@ -10,4 +10,5 @@ public class TaskDto {
 	private String task;
 	private boolean isDelete;
 	private boolean isComplete;
+	private UserDto userDto;
 }

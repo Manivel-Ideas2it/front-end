@@ -2,11 +2,11 @@ package com.ideas2it.todo.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.ideas2it.todo.dto.TaskDto;
 import com.ideas2it.todo.model.Task;
@@ -25,7 +25,7 @@ public class TodoServiceImpl implements TodoService{
 	@Override
 	public void addTask(TaskDto taskDto) {
 		Task task = modelmap.map(taskDto, Task.class);
-		todoRepo.save(task);		
+		todoRepo.save(task);
 	}
 
 
@@ -44,7 +44,20 @@ public class TodoServiceImpl implements TodoService{
 	public List<TaskDto> searchTask(String taskname){
 		if(taskname != "") {
 			List<Task> task = todoRepo.findByTaskContains(taskname);
-			List<TaskDto> taskDto = task.stream().map(t -> modelmap.map(t, TaskDto.class)).toList(); 
+			List<TaskDto> taskDto = task.stream().map(t -> modelmap.map(t, TaskDto.class)).collect(Collectors.toList());
+			System.out.print(taskDto);
+			return taskDto;	
+		} else {
+			return new ArrayList<>();
+		}
+	}
+
+
+	@Override
+	public List<TaskDto> getTask(Integer id) {
+		List<Task> task = todoRepo.findByUserId(id);
+		if(!task.isEmpty()) {
+			List<TaskDto> taskDto = task.stream().map(t -> modelmap.map(t, TaskDto.class)).collect(Collectors.toList()); 
 			return taskDto;	
 		} else {
 			return new ArrayList<>();

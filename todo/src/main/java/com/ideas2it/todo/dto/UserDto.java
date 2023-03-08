@@ -12,5 +12,6 @@ public class UserDto {
 	private String name;
 	private String mailId;
 	private String password;
+	private boolean isActive;
 	private List<TaskDto> taskDto;
 }

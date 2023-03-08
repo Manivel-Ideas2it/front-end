@@ -1,9 +1,12 @@
 package com.ideas2it.todo.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,4 +20,7 @@ public class Task {
 	private String task;
 	private boolean isDelete;
 	private boolean isComplete;
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn
+	private User user;
 }

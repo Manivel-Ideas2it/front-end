@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="todo.css">
+    <title>create account</title>
+</head>
+<body>
+    <div class="todo login">
+        <div class="welcomeDiv accountCreation">
+            <p class="userAccount">create account</p>
+            <form  class="userForm" id="userForm" onsubmit="createAccount()">
+                <div class="userNameDiv">
+                    <label for="" class="userDetails">name</label>
+                    <input type="text" class="userDetail" id="userName"
+                    placeholder="name" autofocus required pattern="^[A-Za-z]{2,20}([ ]?[a-zA-Z]+)*$" title="enter letters only">
+                </div>
+                <div class="userMailDiv">
+                    <label for="" class="userDetails">mail-Id</label>
+                    <input type="email" class="userDetail userMail" id="userMail" placeholder="g-mail" required>
+                </div>
+                 <div class="userMailDiv">
+                    <label for="" class="userDetails">password</label>
+                    <input type="password" class="userDetail userPassword" id="password" placeholder="password" required>
+                </div>
+                <div class="userSubmitDiv">
+                    <button type="submit" class="userSubmit">submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="createUser.js"></script>
+</body>
+</html>

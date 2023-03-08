@@ -1,10 +1,12 @@
 package com.ideas2it.todo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,13 +25,18 @@ public class UserController {
 	private UserService userservice;
 	
 	@PostMapping
-	public void createUser(@RequestBody UserDto userDto) {
-		userservice.createuser(userDto);
+	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+		retiurn userservice.createuser(userDto);
 	}
 	
-	@GetMapping
-	public UserDto checkUser(@RequestParam("userName") String userName,@RequestParam("password") String password ) {
+	@GetMapping("/check")
+	public ResponseEntity<UserDto> checkUser(@RequestParam("userName") String userName,@RequestParam("password") String password ) {
 		return userservice.checkUser(userName,password);
+	}
+	
+	@GetMapping()
+	public UserDto read() {
+		return userservice.read();
 	}
 	
 	@GetMapping("/")
@@ -40,6 +47,11 @@ public class UserController {
 	@PatchMapping
 	public UserDto updateTask(@RequestParam("id") Integer id, @RequestBody TaskDto taskDto) {
 		return userservice.updateTask(id,taskDto);
+	}
+	
+	@PutMapping
+	public void exitUser(@RequestParam("id") Integer id) {
+		userservice.exitUser(id);
 	}
 
 }

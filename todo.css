@@ -1,382 +1,602 @@
 html,body{
     margin: 0%;
     height: 100%;
-    
+    background-color: aliceblue;
 }
-#main-container{
-    background-color:#6b5050;;
+.todo{
     width: 100%;
     height: 100%;
-    position: absolute;
+    overflow: hidden;
 }
-#signUp-Div{
-    background-color: black;
-    width: 28%;
-    height: 33%;
-    margin: 13% 1% 1% 34%;
-    box-shadow: 0px 0px 12px red;
+.login{
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(150deg, blue, grey);
+}
+.welcomeDiv{
+    width: 20em;
+    height: 10em;
+    margin: 17em 1em;
+    box-shadow: 0px 0px 9px 1px black;
     box-sizing: border-box;
-    color: white;
-    padding: 5% 0% 0% 8%;
-    font-family: monospace;
-    text-transform: capitalize;
 }
-
+.welcomeNoteDiv{
+    color: whitesmoke;
+    text-align: center;
+    margin: 42px 1px;
+    font-size: 1.5em;
+    font-family: sans-serif;
+}
+.signInDiv{
+    margin: -7px 4em;
+    width: 60px;
+}
+.signUpDiv{
+    margin: -23px 12.5em;
+    width: 60px;
+}
 .sign{
-    position: relative;
-    font-family: math;
-    box-shadow: 0px 0px 8px red;
+    width: inherit;
 }
-.in{
-    top: 25%;
-    right: 8%;
-    width: 25.7%;
-    height: 14.8%;
-}
-.up{
-    top: 38%;
-    right: 15%;
-    width: 25%;
-    height: 14%;
-    font-size: 75%;
-}
-.sign-page{
-    background-color: black;
-    width: 28%;
-    height: 41%;
-    margin: 13% 1% 1% 34%;
-    box-shadow: 0px 0px 12px red;
-    box-sizing: border-box;
+.accountCreation{
     color: white;
-}
-.user{
-    width: 90%;
-    height: 13%;
-}
-.usernameInput{
-    position: relative;
-    left: 31%;
-    top: 4.9em;
-}
-.usermailId{
-    position: relative;
-    top: 6.5em;
-    left: 39%;
-}
-.usermail{
-    position: relative;
-    top: 8.4em;
-    right: 39%;
     text-transform: capitalize;
+    font-family: sans-serif;
 }
-.userpasswordInput{
-    position: relative;
-    top: 8em;
-    left: 39%;
+.userAccount{
+    font-size: small;
+    text-align: center;
 }
-.label{
-    font-family: monospace;
-    color: azure;
+.userForm{
+    font-size: small;
+    margin-top: 17px;
 }
-.username{
-    text-transform: capitalize;
-    position: relative;
-    top: 5em;
-    left: 17%;
+.userDetails{
+    margin-left: 63px;
 }
-.userpassword{
-    position: relative;
-    top: 9.8em;
-    right: 31%;
-    text-transform: capitalize;
+.userDetail{
+    border-radius: 6px;
+    margin-left: 29px;
+    padding-left: 8px;
 }
-.usersubmitDiv{
-    position: relative;
-    top: 37%;
-    left: 5%;
+.userMailDiv{
+    margin-top: 8px;
 }
-#user-submit{
-    position: relative;
-    top: 12em;
-    right: 7%;
-    box-shadow: 3px 3px 3px blue;
-    text-transform: capitalize;
-    font-weight: 600;
+.userMail{
+    margin-left: 24px;
 }
-.signIn{
-    height: 35%;
+.userPassword{
+    margin-left: 6px;
 }
-.signinpass{
-    top: 6em;
-    left: 47%;
+.userSubmitDiv{
+    margin: 10px 9em;
 }
-.signinpasslabel{
-    right: 47%;
-    top: 8em;
+.userSubmit{
+    border-radius: 10px;
 }
-.account-submit{
-    top: 11em;
-    right: 21%;
+.signInDetail{
+    margin: 1px 36px;
 }
-.forget{
-    top: 10em;
-    right: 32%;
+.signInDetails{
+    border-radius: 5px;
+    padding-left: 6px;
 }
-#todo-page{
+.signInpassword{
+    margin-left: 5px;
+}
+.signInSubmitDiv{
+    margin: 16px 10em;
+}
+.todo  .todoMenuBar{
+    height: 50px;
+    width: 100%;
+    background-color: #2564cf;
+    display: flex;
+}
+.todoMenuBar > div{
     height: 100%;
-    position: relative;
-    background-color:whitesmoke;
-} 
-#todoBar{
-    position: relative;
-    height: 8%;
-    background-color: lightcoral;
 }
 .appIconDiv{
-    width: 3.8%;
-    height: 100%;
+    width: 3em;
 }
-.material-symbols-outlined{
-    margin: 25% 0% 0% 25%;
+.icon{
     color: white;
-    cursor: pointer;
+}
+.appIconDiv .appIcon{
+    margin: 14px 0px 0px 14px;
 }
 .appIconDiv:hover{
-    background-color: rgb(242, 87, 87);
     cursor: pointer;
+    background-color: #0f55cd;
 }
-.todoButton{
-    font: 600 95% 'Poppins', sans-serif;
-    position: absolute;
-    top: 0%;
-    left: 4.2%;
-    height: 100%;
-    color: white;
-    background-color: lightcoral;
-    border: transparent;
+.todoMenuBar .todoButtonDiv{
+    min-width: 4.9em;
 }
-.todoButton:hover{
-     text-decoration: underline;
-     cursor: pointer;
+#createdLists{
+
 }
-#search-bar{
-    background-color: white;
-    position: relative;
-    top: -83%; 
-    bottom: 81%;
-    width: 31%;
-    height: 65%;
-    left: 31%;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.search-icon{
-    color: blue;
-    opacity: 0.7;
-    transform: rotate( 86deg);
-    position: absolute;
-    bottom: 9%;
-    left: -24.7%;
-    cursor: pointer;
-}
-#search{
-    position: absolute;
-    width: 27%;
-    height: 53%;
-    left: 33%;
-    bottom: 22%;
-    cursor: text;
-    outline: none;
-    border: none;
-    background-color:white;
-}
-.closer{
-    position: absolute;
-    bottom: 24%;
-    left: 35%;
-    color: rgb(50, 88, 145);
-    cursor: pointer;
-}
-#search-box{
-    width: 73%;
-    height: 88%;
-    position: absolute;
-    top: 12%;
-    left: 25%; 
-    background-color:  white;
-}
-#left-menu-bar{
-    background-color: white;
-    width: 23%;
-    height: 92%;
-    /* display: inline-block; */
-}
-.leftMenuBarList{
-    width: 75%;
-    height: 10%; 
-    /* background-color: rgb(169, 85, 249);    */
-}
-.task-add{
-    width: 73%;
-    height: 88%;
-    position: absolute;
-    top: 12%;
-    left: 25%;
-}
-.task{
-    background-color: #fee0e0;
+.todoButtonDiv .todoButton{
     width: 100%;
-    height: 9%;
-    position: static;
-}
-#text-list{
-    width: 84%;
-    height: 58%;
-    margin: 0.8% 0% 0% 8%;
-    padding-left: 1%;
-    border-color: black;
-    border-radius: 5px;
-    /* box-sizing: border-box; */
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    text-transform: capitalize;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
 }
 
-#add{
-    height: 70%;
-    margin-left: 0.5%;
-    background-color:  #e93333;
-    color: white;
-    border-color:rgb(244, 148, 148);
-    border-radius: 4px;
+.todoButton:hover{
+    text-decoration: underline;
     cursor: pointer;
 }
-li{
-    list-style: none;
-    height: 26px;
-    padding: 1% 0% 0% 5%;
-    width: 75%;
-    margin: 2% 0% 0% 5%;;
-    border-radius: 7px;
-    background-color: #f4d3d3;
-    box-shadow: 0px 0px 5px 1px;
-    position: relative;
+.taskSearchDivBar{
+    width: 77%;
+    display: flex;
 }
-#list-Text{
-    background-color: ghostwhite;
-    width: 98%;
-    border: none;
-    outline: none; 
+.taskSearch{
+    width: 44%;
+    margin-left: 20%;
 }
-#check-box{
-    position: absolute;
-    left: 1%;
-    top: 15%;
-    height: 60%;
-    cursor: pointer;
-}
-#button{
-    background-color: lightgreen;
-    height: 29px;
-    width: 7%;
-    position: absolute;
-    left: 109%;
-    top: 10%;
-    border-radius: 4px;
-    font-size: 44%;
-    text-transform: uppercase;
-    font-weight: 900;
-    border-color: beige;
-    cursor: pointer;
-}
-.text{
-    background-color: lightgreen;
-    height: 29px;
-    width: 7%;
-    position: absolute;
-    left: 101%;
-    top: 10%;
-    border-radius: 4px;
-    font-size: 44%;
-    text-transform: uppercase;
-    font-weight: 900;
-    border-color: beige;
-    cursor: pointer;
-}
-#task-details{
-    height: 91%;
-    overflow: auto;
-}
-#task-info{ 
-    width: 90%;
-    margin: 3% 0% 0% 4%;
-    min-height: 0%;
-}
-#task-completion{
-    background-color: white;
-    height: 7%;
-    padding: 2% 0% 0% 4%;
-    margin: 2% 0% 0% 0%;
-    text-transform: capitalize;
-    font:600 100% Arial, Helvetica, sans-serif;
-    display: none;
-    cursor: pointer;
-}
-#task-status{
-    width: 90%;
-    min-height: 7%;
-    margin: 0% 0% 0% 4%;
-}
-.alert-box-message{
-    text-transform: capitalize;
-    font:600 100% monospace;
-    padding: 4% 0% 0% 13%;
-}
-#alert-box {
-    width: 24%;
-    height: 20%;
-    background-color: white;
-    position: fixed;
-    left: 39%;
-    bottom: 40%;
+.taskSearchDiv{
+    background-color:white;
+    width: 34%;
+    height: 31px;
+    margin: 10px 0px 0px 35%;
     border-radius: 5px;
-    box-shadow: 0px 0px 4px 1px lightgrey;
+    display: flex;
 }
-.remove{
-    width: 16%;
-    height: 20%;
-    text-transform: uppercase;
-    font:600 88% monospace;
-    margin: 5% 0% 0% 25%;
-    background-color: lightslategrey;
-    border: groove lightgray;
+.taskSearchDiv:hover{
+    cursor: pointer;
+    transform: scale(1.01);
+}
+.taskSearchDiv .searchIcon{
+    color: #6394e8;
+    transform: rotate(90deg);
+    margin: 0px 0px 0px 2px;
+}
+.searchField{
+    margin: 0px 0px 0px 9px;
+    width: 82%;
+    border: none;
+    outline: none;
+    display: none;
+}
+.searchCloserDiv{
+    margin: 14px -25px;
+    z-index: 1;
+    display: none;
+}
+.searchCloser{
+    color: #2564cf;
+    width: fit-content;
     cursor: pointer;
 }
-.cancel{
-    margin: 3% 0% 0% 15%;
+
+.taskBarUserDiv{
+    min-width: 15%;
+    display: flex;
 }
-.userAccountDiv{
-    width: 4%;
-    height: 98%;
-    background-color: lightcoral;
-    position: relative;
-    bottom: 5em;
-    left: 76.7em;
+.taskBarUserDiv > div {
+    height: 100%;
 }
-#userNameDiv{
-    background-color: lightcoral;
-    font-family: monospace;
-    color: white;
+.taskBarUser:hover {
+    cursor: pointer;
+    background-color: #166afa;
+}
+.taskBarUserDiv .settingIconDiv{
+    width:24%;
+}
+.settingsIcon{
+    margin: 17px 17px;
+}
+.questionMarkIconDiv{
+    width:24% ;
+}
+.megaphoneIconDiv{
+    width: 26%;
+}
+.userIconDiv{
+    width: 26%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+}
+.circleDiv{
+    background: transparent;
+    height: 30px;
+    width: 30px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+}
+.dot {
     text-transform: capitalize;
-    position: relative;
-    width: fit-content;
-    bottom: 8.5em;
-    left: 91em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    box-sizing: border-box;
+    color:white;
+  }
+.todoBody{
+    width: 100%;
+    height: 93%;
+    display: flex;
+    box-sizing: border-box;
 }
-#logOutDiv{
-    background-color: lightcoral;
-    position: relative;
-    bottom: 5.95em;
-    left: 76.6em;
+.todoBodyLeft{
+    background-color: white;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.todoBodyRight{
+    width: 80%;
+    height: 100%;
+    background-color: whitesmoke;
+}
+.todoBodyLeft .leftMenuHeaderDiv{
+    width: 100%;
+    height: 12%;
+}
+.leftMenuHeaderDiv .sideMenuBarDiv{
+    width: fit-content;
+    margin: 33px 1px 1px 25px;;
+    height: fit-content;
+    position: fixed;
+}
+.sideMenuBarDiv .sideMenuBarIcon{
+    color:#292827;
+    cursor: pointer;
+}
+.todoBodyLeft .leftMenuBodyDiv{
+    width: 100%;
+    height: 80%;
+}
+.leftMenuContent{  
+    height:55%;
+    display: flex;
+    flex-direction: column;
+}
+.todoBodyLeft .leftMenuFooterDiv{
+    width: 100%;
+    height: 8%;
+}
+.leftMenuContentList{
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+}
+.leftMenuAddedContentList{
+    width: 100%;
+    max-height: 80%;
+    overflow-y: auto;
+}
+.leftMenuAddedContentList::-webkit-scrollbar{
+    width: 2px;
+}
+.leftMenuAddedContentList::-webkit-scrollbar-thumb{
+   background-color:#2564cf;
+}
+.leftMenuAddedContentList::-webkit-scrollbar-track{
+    background-color: whitesmoke;
+}
+#createdLists{
+    height: 55px;
+}
+.sidemenuContent{
+    height: 18%;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    padding-top: 5px;
+}
+.sidemenuContent:hover{
+    cursor: pointer;
+    background-color: rgb(232, 232, 232);
+}
+.iconBody{
+    color: black;
+}
+.leftMenuContentIcon{
+    width: fit-content;
+    margin: 16px 28px;
+    height: 46%;
+}
+.leftMenuContentName{
+    width: 71%;
+    height: 50%;
+    text-transform: capitalize;
+    margin: 6% 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 81%;
+}
+.horizondalDiv{
+    height: 10%;
+}
+.horizondalLine {
+    color: rgb(240, 240, 240);
+    width: 90%;
+    margin-top: 4%;
+}
+.leftMenuListCreate{
+    height: 3em;
+    display: flex;
+    color: #6394e8;
+}
+.leftMenuContentCreateDiv{
+    width: 100%;
+    display: flex;
+    height: 3em;
+    box-sizing: border-box;
+    color: #2564cf;
+}
+.leftMenuContentCreateInnerDivOne{
+    height: 100%;
+    width: 75%;
+    box-sizing: border-box;
+}
+.leftMenuContentCreateInnerDivOne:hover{
+    background-color: whitesmoke;
+}
+.leftMenuContentCreateInnerDivTwo{
+   width: 25%;
+   box-sizing: border-box;
+}
+.leftMenuContentCreateInnerDivTwo:hover{
+    background-color: whitesmoke;
+}
+.listMenuInnerAddDiv{
+    height: 40%;
+    width: 95%;
+    margin: 15px 11px;
+    display: flex;
+    box-sizing: border-box;
+}
+.leftBarAddIconDiv{
+    width: 25px;
+    margin-left: 5%;
+    height: 99%;
+}
+.leftBarAddIconDiv:hover{
+    cursor: pointer;
+}
+.leftMenuTaskList{
+    border: none;
+    text-transform: capitalize;
+    outline: none;
+    margin: 4px 1px 1px 13px;
+    width: 11.5em;
+    height: 12px;
+    background: none;
+}
+.leftMenuTaskList::placeholder{
+    color: #2564cf;
+}
+.leftBarAddFileIconDiv{
+    width: 31%;
+    margin: 14px 1px 1px 23px;
+    height: 55%;
+}
+.leftMenuFooterDiv{
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+}
+.footerDiv{
+    width: 4em;
+}
+.footerDiv:hover{
+    cursor: pointer;
+    background-color: whitesmoke;
+}
+.todoIconDiv{
     width: fit-content;
     height: fit-content;
-    border: 2px groove lightcoral;
+    margin: 22px 1px 1px 19px;
+    color: #2564cf;
+}
+.dateAndTimeDiv{
+    width: 100%;
+    height: 15%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.dateAndTimeInnerDiv{
+    width: 96%;
+    height: 76%;
+    margin-bottom: 13px;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+.dateAndTimeHeading{
+    width: 76%;
+    height: 60%;
+    display: flex;
+    box-sizing: border-box;
+}
+.sunIconDiv{
+    width: 28px;
+    padding: 3px;
+    margin-top: 13px;
+    margin-left: 15px;
+}
+.contentHeading{
+    width: 5em;
+    padding: 3px 1px 1px 1px;
+    margin: 11px 1px 1px 1px;
+}
+.contentHeadingName{
+    text-transform: capitalize;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 21px;
+}
+.yearAndDayDiv{
+    width: 100%;
+    height: 40%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#yearAndDate{
+    text-transform: capitalize;
+    font-size: 91%;
+    padding: 0px 18px;
+}
+.taskBody{
+    width: 100%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+}
+#checkTask:hover{
+    cursor: pointer;
+}
+#editButton:hover{
+    cursor: pointer;
+}
+.taskAddingDiv{
+    background-color: white;
+    height: 55px;
+    width: 95%;
+    border-radius: 5px;
+    display: flex;
+    box-shadow: 0px 0px 12px grey;
+    margin: 1px 1px 5px 28px;
+}
+.taskAddingCircleDiv{
+    color: #2564cf;
+    width: 5%;
+    box-sizing: border-box;
+    padding: 17px 14px;
+}
+.taskInputFieldDiv{
+      width: 87%;
+      padding: 18px 1px;
+}
+.taskInputField{
+    width: 99%;
+    border: none;
+    outline: none;
+    height: 100%;
+    background: none;
+}
+.addButtonDiv{
+    width: 7.8%;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+}
+.editIconDiv{
+    width: 50%;
+    padding-top: 18px;
+    display: none;
+}
+.editIcon{
+    margin: 1px 14px;
+}
+.addIcon{
+    margin: 1px 10px;
+}
+
+.addIconDiv{
+    width: 50%;
+    padding-top: 14px;
+    cursor: pointer;
+}
+.arrowSet{
+    margin: 9px 1px 1px 9px;
+    cursor: pointer;
+}
+.countValue{
+    margin: -25px 37px;
+    text-transform: capitalize;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.addButton{
+    border: groove whitesmoke;
+    height: 32px;
+    margin: 12.5px 7px;
+    background-color:whitesmoke;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.addedTaskDiv{
+    width: 100%;
+    height: 87%;
+    overflow-y: scroll;
+}
+.addedTaskDiv::-webkit-scrollbar{
+    width: 4px;
+}
+.addedTaskDiv::-webkit-scrollbar-track{
+    background-color: whitesmoke;
+}
+.addedTaskDiv::-webkit-scrollbar-thumb{
+    background-color: #2564cf;
+}
+.addedTask{
+    width: 100%;
+    min-height: 0px;
+    display: flex;
+    flex-direction: column;
+}
+#completedTaskCount{
+    width: 96%;
+    min-height: 3em;
+    border-radius: 5px;
+    margin: 0px 0px 6px 23px;
+    cursor: pointer;
+    display: none;
+}
+.completedTasks{
+    width: 100%;
+    min-height: 0px;
+    display: none;
+}
+#editIcon{
+    display: none;
+}
+#deleteIcon{
+    display: none;
+}
+.searchResult{
+    width: 80%;
+    position: absolute;
+    height: 92%;
+    z-index: 1;
+    top: 7%;
+    background-color: rgb(156, 184, 255);
+    display: none;
+    overflow: auto;
+    padding: 1 0px 0px 0px;
+    margin: 7px 0px 0px 0px;
+}
+.searchResult::-webkit-scrollbar{
+    width: 4px;
+}
+.searchResult::-webkit-scrollbar-track{
+    background-color: lightgray;
+}
+.searchResult::-webkit-scrollbar-thumb{
+    background-color: #2564cf;
+}
+.signOutDiv{
+    background-color: aqua;
+    width: 10%;
+    position: fixed;
+    height: 7%;
+    top: 6.7%;
+    left: 90%;
+    display: none;
+}
+#signOut{
+    text-align: center;
+    text-decoration: underline;
     cursor: pointer;
 }

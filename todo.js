@@ -1,468 +1,255 @@
-
 window.addEventListener("load",function(){
-    userSignUp();
+    date();
+    read();
 });
-const urlTodo = 'http://localhost:8080/api/v1/todo';
-
-function userSignUp(){
-    let container = document.getElementById("main-container");
-    let login = document.createElement("div");
-    login.id = "signUp-Div";
-    container.appendChild(login);
-
-    login.innerText = "welcome ideas2it todo";
-    let signIn = document.createElement("button");
-    signIn.innerText = "sign-in";
-    signIn.className="sign in";
-
-    let signUp = document.createElement("button");
-    signUp.innerText = "sign-up";
-    signUp.className = "sign up";
-    login.appendChild(signUp); 
-    login.appendChild(signIn);
-
-    signUp.addEventListener("click",function(){
-        signUpPage(login);
-    });   
-    signIn.addEventListener("click",function(){
-        signInPage(login);
-    });
+let userId;
+function date() {
+    const date = new Date().toLocaleDateString('en-us', { weekday : "long",  month : "long", day:"numeric" });
+    document.getElementById("yearAndDate").innerText = date;
 }
 
-function signUpPage(element){
-    element.remove();
-    let signUpPageDiv = document.createElement("div");
-    signUpPageDiv.className = "sign-page";
-    let container = document.getElementById("main-container");
-    container.appendChild(signUpPageDiv);
-    let signUpform = document.createElement("form");
-  
-    let usernameLabel = document.createElement("label");
-    usernameLabel.innerText = "name";
-    usernameLabel.className = "username label";
-    let userName = document.createElement("input");
-    userName.className = "usernameInput";
-    userName.focus();
-    userName.required = true;
-
-    let userMailLabel = document.createElement("label");
-    userMailLabel.innerText = "mail-Id";
-    userMailLabel.className = "usermail label";
-    let userMailId = document.createElement("input");
-    userMailId.className = "usermailId";
-    userMailId.required = true;
-
-    let userpasswordLabel = document.createElement("label");
-    userpasswordLabel.innerText = "password";
-    userpasswordLabel.className = "userpassword label";
-    let userPassword = document.createElement("input");
-    userPassword.className = "userpasswordInput";
-    userPassword.required = true;
-
-    let submit = document.createElement("button");
-    submit.type = "submit";
-    submit.id = "user-submit";
-    submit.innerText = "submit";
-
-    signUpPageDiv.appendChild(signUpform);
-    signUpform.appendChild(usernameLabel);
-    signUpform.appendChild(userName);
-    signUpform.appendChild(userMailLabel);
-    signUpform.appendChild(userMailId);
-    signUpform.appendChild(userpasswordLabel);
-    signUpform.appendChild(userPassword);
-    signUpform.appendChild(submit);
-   
-    submit.addEventListener('click',function(){
-        user = {
-            name : userName.value,
-            mailId : userMailId.value,
-            password : userPassword.value
-        };
-        createUser(user,signUpPageDiv);
-    });
-}
-
-function signInPage(element){
-    element.remove();
-    let container = document.getElementById("main-container");
-    let sigIn = document.createElement("div");
-    sigIn.className = "sign-page signIn";
-    container.appendChild(sigIn);
-
-    let usernameLabel = document.createElement("label");
-    usernameLabel.innerText = "username";
-    usernameLabel.className = "username label";
-    let userName = document.createElement("input");
-    userName.className = "usernameInput";
-    // userName.focus();
-    // userName.required = true;
-
-    let userpasswordLabel = document.createElement("label");
-    userpasswordLabel.innerText = "password";
-    userpasswordLabel.className = "userpassword label signinpasslabel";
-    let userPassword = document.createElement("input");
-    userPassword.className = "userpasswordInput signinpass";
-    // userPassword.required = true;
-
-    let forget = document.createElement("button");
-    forget.innerText = "forget";
-    forget.className="sign in forget";
-    let submit = document.createElement("button");
-    submit.innerText = "submit";
-    submit.className = "sign up account-submit";
-
-    sigIn.appendChild(usernameLabel);
-    sigIn.appendChild(userName);
-    sigIn.appendChild(userpasswordLabel);
-    sigIn.appendChild(userPassword);
-    sigIn.appendChild(forget);
-    sigIn.appendChild(submit);
-
-    submit.addEventListener('click',function(){
-        userCheck(userName.value,userPassword.value);
-    });
-};
-
-function createTodo(data){
-    let todoPage = document.createElement("div");
-    todoPage.id = "todo-page";
-    document.body.appendChild(todoPage);
-
-    let todoBar = document.createElement("div");
-    todoBar.id = "todoBar";
-
-    let appIconDiv = document.createElement("div");
-    appIconDiv.className = "appIconDiv";
-
-    let appIcon = document.createElement("span");
-    appIcon.innerText = "apps"
-    appIcon.className = "material-symbols-outlined";
-
-    let todo = document.createElement("button");
-    todo.className = "todoButton";
-    todo.innerText = "TO DO";
-
-    let searchBar = document.createElement("div");
-    searchBar.id = "search-bar";
-    
-    let searchIcon = document.createElement("span");
-    searchIcon.className = "material-symbols-outlined search-icon";
-    searchIcon.innerText = "search";
-
-    let userAccountDiv = document.createElement("div");
-    userAccountDiv.className = "userAccountDiv";
-
-    let userAccountIcon = document.createElement("span");
-    userAccountIcon.className = "material-symbols-outlined";
-    userAccountIcon.innerText = "account_circle";
-
-    let leftMenuBar = document.createElement("div");
-    leftMenuBar.id = "left-menu-bar";
-
-    let leftMenuBarList = document.createElement("div");
-    leftMenuBarList.className = "leftMenuBarList";
- 
-    let taskaddDiv = document.createElement("div");
-    taskaddDiv.className = "task-add";
-
-    let taskAdd = document.createElement("div");
-    taskAdd.className = "task"; 
-
-    let taskAddInput = document.createElement("input");
-    taskAddInput.type = "text";
-    taskAddInput.id = "text-list";
-    taskAddInput.placeholder = "Add a task";
-
-    let addButton = document.createElement("button");
-    addButton.innerText = "add";
-    addButton.id = "add";
-    addButton.type = "button";
-
-    let addedDetailDiv = document.createElement("div");
-    addedDetailDiv.id = "task-details";
-
-    let addedTaks= document.createElement("div");
-    addedTaks.id ="task-info";
-
-    let completedCountDiv = document.createElement("div");
-    completedCountDiv.id="task-completion";
-
-    let completedTaskStatus = document.createElement("div");
-    completedTaskStatus.id="task-status";
-
-    let userNameDiv = document.createElement("div");
-    userNameDiv.id = "userNameDiv";
-    userNameDiv.innerText = data.name;
-
-    todoPage.appendChild(todoBar);
-    todoBar.appendChild(appIconDiv);
-    appIconDiv.appendChild(appIcon);
-    todoBar.appendChild(todo);
-    todoBar.appendChild(searchBar);
-    searchBar.appendChild(searchIcon);
-    todoBar.appendChild(userAccountDiv);
-    todoBar.appendChild(userNameDiv);
-    userAccountDiv.appendChild(userAccountIcon);
-    todoPage.appendChild(leftMenuBar);
-    leftMenuBar.appendChild(leftMenuBarList);
-    todoPage.appendChild(taskaddDiv);
-    taskaddDiv.appendChild(taskAdd);
-    taskAdd.appendChild(taskAddInput); 
-    taskAdd.appendChild(addButton);
-    taskaddDiv.appendChild(addedDetailDiv);
-    addedDetailDiv.appendChild(addedTaks);
-    addedDetailDiv.appendChild(completedCountDiv);
-    addedDetailDiv.appendChild(completedTaskStatus);
-
-    readList(data.id);
-    searchBar.addEventListener("click",function(){
-        searchDivision();
-    });
-    addButton.addEventListener("click",function(){
-        add(data.id,taskAddInput);
-    });
-    userAccountIcon.addEventListener("click",function(){
-        logOut();
-    })    
-}
-function logOut(){
-    let logOutDiv = document.createElement("div");
-    logOutDiv.id = "logOutDiv";
-    logOutDiv.innerText = "signOut"; 
-    document.getElementById("todoBar").appendChild(logOutDiv);
-    logOutDiv.addEventListener("click",function(){
-        alert(pageExit);
-        pageExit =0;
-    });
-   
-}
-
-function searchDivision(){
-    let searchInput = document.createElement("input");
-    searchInput.id = "search";
-    let menubar = document.getElementById("todoBar");
-    menubar.appendChild(searchInput);
-    searchInput.focus();
-    let closer = document.createElement("span");
-    closer.className = "material-symbols-outlined closer";
-    closer.innerText = "close";
-    menubar.appendChild(closer);
-    closer.addEventListener("click",function(){
-        searchInput.remove();
-        closer.remove();
-        document.getElementById("search-box").remove();
-    });
-    searchInput.addEventListener("input",function(){
-        filter = searchInput.value;
-        createSerachDiv(searchList(filter));
-    });
-}
-
-function createSerachDiv(element){
-    let creatDiv = document.createElement("div");
-    creatDiv.id = "search-box";
-    element.then(result => {
-        result.forEach(e => {
-            let list = createListDivision(e);
-            creatDiv.appendChild(list); 
-        });
-    });
-    document.body.appendChild(creatDiv);  
-};
-
-function createListDivision(data){
-    let list = document.createElement("li");
-    let listText = document.createElement("input");
-    let remove = document.createElement("button");
-    let check = document.createElement("input");
-    let text = document.createElement("button"); 
-    list.appendChild(check);
-    list.appendChild(listText);
-    list.appendChild(text);
-    list.appendChild(remove);
-    list.id = "added-list";
-    listText.value = data.task;
-    listText.id = "list-Text";
-    listText.disabled = true;
-    check.type = "checkbox";
-    check.id = "check-box";
-    remove.id = "button";
-    remove.innerText = "remove";
-    text.className = "text";
-    text.innerText = "edit";
-    check.addEventListener("click",function(){
-        checkList(check,data);
-    });
-    remove.addEventListener('click',function(){
-        removelist(remove,data);
-    })
-    text.addEventListener('click',function(){
-        changeContent(text,data);
-    });
-    if(data.complete){
-        data.complete = !(data.complete);
-        list.childNodes[0].checked = true;
-        checkList(list.childNodes[0],data);
+let input = document.getElementById("taskInputField");
+input.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        addTask();
     }
-    return list;
+});
+
+let addTaskInput = document.getElementById("addIcon");
+addTaskInput.addEventListener("click",function(){
+    addTask();
+})
+
+function addTask(){
+    let inputValue = input.value;
+    if(inputValue != ""){
+        input.value = "";
+        add(inputValue);
+        return true;
+    }
+    alert("write something before add the task");
+}
+let signOutDiv = document.getElementById("usericonDiv");
+signOutDiv.addEventListener("click",function(){
+    let signOut = document.getElementById("signOutDiv");
+    signOut.style.display = "block";
+});
+
+let signOut = document.getElementById("signOut");
+signOut.addEventListener("click",function(){
+    existUser(userId);
+});
+
+
+function createTaskDiv(e){
+const createdTask = document.getElementById("addedTask");
+createdTask.innerHTML = "";
+document.getElementById("completedTasks").innerHTML = "";
+let addedTask = document.getElementById("taskAddingDiv");
+    for (let i of e){
+        let cloneTask = addedTask.cloneNode(true);
+        cloneTask.childNodes[1].childNodes[1].id = "checkTask";
+        cloneTask.childNodes[3].childNodes[1].value = i.task;
+        cloneTask.childNodes[3].childNodes[1].disabled = true;
+        cloneTask.childNodes[5].childNodes[1].style.display = "block";
+        cloneTask.childNodes[5].childNodes[1].childNodes[1].id = "editButton";
+        cloneTask.childNodes[5].childNodes[3].childNodes[1].style.fontSize = "20px";
+        cloneTask.childNodes[5].childNodes[3].childNodes[1].innerText = "delete";
+        createdTask.appendChild(cloneTask);
+        if(i.complete == true){
+            i.complete = false;
+            completedTask(cloneTask,i);
+        }
+        cloneTask.childNodes[1].childNodes[1].addEventListener("click",function(){
+            completedTask(cloneTask ,i);
+        });
+        cloneTask.childNodes[5].childNodes[1].childNodes[1].addEventListener("click",function(){
+            editTask(cloneTask,i);
+        });
+        cloneTask.childNodes[5].childNodes[3].childNodes[1].addEventListener("click",function(){
+            removetask(cloneTask,i);
+        });
+    }
 }
 
-function checkList(element,data){
-    let completedTaskStatus = document.getElementById("task-status");
-    if(element.checked && data.complete == false){
-        completedTaskStatus.appendChild(element.parentNode);
-        element.parentNode.childNodes[2].style.display = "none";
-        element.parentNode.childNodes[3].style.left =  "101%";
-        updateList(data);
+function completedTask(element,data){
+    let check =  element.childNodes[1].childNodes[1];
+    let taskComplete = document.getElementById("completedTasks");
+    let unCheck = document.getElementById("addedTask");
+
+    if( check.innerText == "circle" && data.complete == false){
+        check.innerText ="check_circle";
+        element.childNodes[5].childNodes[1].childNodes[1].style.display = "none";
+        taskComplete.appendChild(element);
+        completedTaskUpdate(data);
     } else {
-        document.getElementById("task-info").appendChild(element.parentNode);
-        element.parentNode.childNodes[2].style.display = "block";
-        element.parentNode.childNodes[3].style.left =  "109%";
-        updateList(data);
-    } 
+        check.innerText = "circle";
+        element.childNodes[5].childNodes[1].childNodes[1].style.display = "block";
+        unCheck.appendChild(element);
+        completedTaskUpdate(data)
+    }
     completedTaskCount();
 }
 
+function completedTaskUpdate(data){
+    data.complete = !(data.complete);
+    updateList(data);
+}
+
 function completedTaskCount(){
-    let countValue = document.getElementById("task-status").childElementCount;
-    alert(countValue);
-    if(countValue == 0){
-        document.getElementById("task-completion").style.display="none";
-    } else {
-        document.getElementById("task-completion").innerText = "completed - " + countValue;
-        document.getElementById("task-completion").style.display="block";
-    }
-}
-
-function removelist(element,data) {
-    const dropListelemnt = element.parentElement;
-    let message = document.createElement("p");
-    message.className = "alert-box-message";
-    message.innerHTML = "Do you want to remove the task...";
-    let remove = document.createElement("div");
-    remove.appendChild(message);
-    remove.id = "alert-box";
-    document.body.appendChild(remove);
-    let removeList = document.createElement("button");
-    removeList.className = "remove conform";
-    remove.appendChild(removeList);
-    removeList.innerText = "ok";
-    let removeListCancel = document.createElement("button");
-    removeListCancel.className = "remove cancel";
-    remove.appendChild(removeListCancel);
-    removeListCancel.innerText = "cancel";
-    removeList.addEventListener('click', function() {
-        remove.remove();
-        removeConform(dropListelemnt);
-        completedTaskCount();
-        dropList(data.id);
-    });
-    removeListCancel.addEventListener('click', function() {
-        remove.remove();
-        dropList(data.id);
-    });
-}
-
-function removeConform(element) {
-    if (element.childNodes[2].innerHTML == "edit") {
-        element.remove();
+    let checkStatus = document.getElementById("completedTaskCount");
+    let count = document.getElementById("completedTasks").childElementCount;
+    if(count == 0){
+        checkStatus.style.display = "none";
     } else{
-        alert("save the text after that remove the task...");
+        checkStatus.style.display ="block";
+        checkStatus.childNodes[3].innerText = "completed"+"-"+count;
     }
 }
 
-function changeContent(element,elementData){
-    let editContent = element.parentNode;
-    let saveContent = editContent.childNodes[1];
-    if(saveContent.disabled) {
-        saveContent.disabled = false;
-        saveContent.focus();
-        editContent.childNodes[2].innerText = "save";
+let checkStatus = document.getElementById("completedTaskCount");
+let hideTask = document.getElementById("arrowSet");
+let completedTaskDiv = document.getElementById("completedTasks");
+checkStatus.addEventListener("click",function(){
+    if(hideTask.innerText == "expand_more"){
+        completedTaskDiv.style.display ="none";
+        hideTask.innerText = "chevron_right";
+    } else{
+        hideTask.innerText = "expand_more";
+        completedTaskDiv.style.display = "block";
+    }
+});
+
+function editTask(element,data){
+    if((element.childNodes[3].childNodes[1].disabled)){
+        element.childNodes[3].childNodes[1].disabled = false;
+        element.childNodes[3].childNodes[1].focus();
+        element.childNodes[5].childNodes[1].childNodes[1].innerText = "save";
     } else {
-        saveContent.disabled = true;
-        editContent.childNodes[2].innerText = "edit";
-        elementData.task = saveContent.value;
-        updateList(elementData);
+        element.childNodes[3].childNodes[1].disabled = true;
+        element.childNodes[5].childNodes[1].childNodes[1].innerText = "edit";
+        data.task = element.childNodes[3].childNodes[1].value; 
+        updateList(data);
     }
+
 }
 
-// let input = document.getElementById("text-list");
-// input.addEventListener("keydown", function(event) {
-//     if (event.key === "Enter") {
-//         add();
-//     }
+function removetask(element,data){
+    element.remove();
+    dropList(data.id);
+}
+
+// let searchDiv = document.getElementById("taskSearchDiv");
+// let search = document.getElementById("searchField");
+// let close = document.getElementById("searchCloserDiv");
+// let searchResult = document.getElementById("searchResult");
+// searchDiv.addEventListener('click',function(){
+//     searchResult.innerText ="";
+//     search.style.display = "block";
+//     close.style.display = "block";
+//     searchResult.style.display ="block"
+//     search.addEventListener("input",function(){
+//         searchResult.innerText ="";
+//         filter = search.value;
+//         createSearchDiv(searchList(filter));
+//     });
+
+// });
+// close.addEventListener("click",function(){
+//     search.value = "";
+//     search.style.display = "none";
+//     close.style.display = "none";
+//     searchResult.style.display ="none";
 // });
 
-// division = document.getElementById("task-completion");
-// division.addEventListener("click",function(){
-// if(document.getElementById("task-status").style.display == "none"){
-//     document.getElementById("task-status").style.display = "block";
-// } else{
-//     document.getElementById("task-status").style.display ="none";
-// }
-// });
+// function createSearchDiv(element){
+//     element.then(result => {
+//         console.log(result);
+//         result.forEach(e => {
+//             let list = readTask(e);
+//             searchResult.appendChild(list); 
+//         });
+//     });
+// };
 
-function createUser(object,element){
-    let url ='http://localhost:8080/api/v1/user';
+let menuBar = document.getElementById("sideMenuBarDiv");
+let leftBox = document.getElementById("todoBodyLeft");
+let rightBox = document.getElementById("todoBodyRight");
+menuBar.addEventListener("click",function(){
+
+    if(leftBox.style.width == "0%"){
+        leftBox.style.width = "20%";
+        rightBox.style.width = "80%"
+    } else {
+        leftBox.style.width = "0%";
+        rightBox.style.width = "100%"
+    }
+})
+let createList = document.getElementById("leftMenuTaskList");
+createList.addEventListener("keydown",function(event){
+
+    if (event.key === "Enter") {
+        let oldList = document.getElementById("oldList");
+        let newList = oldList.cloneNode(true);
+        newList.childNodes[1].childNodes[1].innerText = "list";
+        if(createList.value != ""){
+            newList.childNodes[3].childNodes[1].innerText = createList.value;
+        } else{
+            newList.childNodes[3].childNodes[1].innerText ="Untitled List";
+        }
+            newList.id ="createdLists";
+        document.getElementById("createdNewList").appendChild(newList);
+        createList.value ="";
+    }
+});
+
+function add(data){
+    let newTask = {task :data,userDto:{id:userId}};
+    console.log(newTask);
     let request =  {
     method: 'POST',
-    body: JSON.stringify(object),
-    headers: {
-        'Content-Type': 'application/json'
-        }
-    };
-    fetch(url,request).then(()=> 
-    signInPage((element)));
-};
-
-async function userCheck(userName,password){
-    let url ='http://localhost:8080/api/v1/user?userName='+userName+'&password=' +password;
-    let data = await fetch(url).then(response => response.json());
-    createTodo(data);
-}
-
-function add(id,data){
-    let newTask = { task :data.value};
-    
-    if( newTask.task == ""){
-        alert("you need to write something...");
-        return false;
-    }
-    let request =  {
-    method: 'PATCH',
     body: JSON.stringify(newTask),
     headers: {
         'Content-Type': 'application/json'
         }
     };
-    fetch('http://localhost:8080/api/v1/user?id='+id,request).then(response => response.json().then(result => loadedList(result.taskDto)));
+    fetch('http://localhost:8080/api/v1/todo',request).then(response => {
+        if(response.ok){
+            readTask(userId);
+        }
+    });
 }
-
-function loadedList(data){
-    document.getElementById("task-info").innerText ="";
-    document.getElementById("task-status").innerText="";
-
-    // readList().then((result) => {
-    //     for(let task of result){
-    //         read(task);
-    //     }
-    // });   
-    for(let task of data){
-        read(task);
-    }
-}
-
-function read(data){
-    let list = createListDivision(data);
-    document.getElementById("task-info").appendChild(list);
-    document.getElementById("text-list").value = "";
-}
-
-async function readList(id){
-    const url = 'http://localhost:8080/api/v1/user/?id='+id;
+async function readTask(userId){
+    const url = "http://localhost:8080/api/v1/todo?id="+userId;
     let data = await fetch(url);
-    data.json().then(value => loadedList(value.taskDto));
+    data.json().then(value => createTaskDiv(value));
+}
+
+async function read(){
+    const url = "http://localhost:8080/api/v1/user";
+    let data = await fetch(url);
+    data.json().then(value => userDetail(value));
+}
+
+function userDetail(object){
+    userId = object.id;
+    let username = object.name;
+    let userIcon = document.getElementById("userIcon");
+    userIcon.innerText = username.charAt(0);
+    readTask(userId); 
+}
+
+function updateList(data){
+    console.log(data);
+    data.userDto={id:userId};
+    let request =  {
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: {
+        'Content-Type': 'application/json'
+        }
+    };
+    fetch('http://localhost:8080/api/v1/todo',request);
 }
 
 function dropList(id){
@@ -475,19 +262,23 @@ function dropList(id){
     fetch( 'http://localhost:8080/api/v1/todo?id='+id,request);
 }
 
-function updateList(element){
-    let request =  {
-    method: 'PUT',
-    body: JSON.stringify(element),
-    headers: {
-        'Content-Type': 'application/json'
-        }
-    };
-    fetch(urlTodo,request);
+async function searchList(element){
+    const url = 'http://localhost:8080/api/v1/todo/?name=' + element;
+    let data = await fetch(url);
+    return data.json();
 }
 
-// async function searchList(element){
-//     const url = 'http://localhost:8080/api/v1/todo?name=' + element;
-//     let data = await fetch(url);
-//     return data.json();
-// }
+function existUser(userId){
+    let requestOptions = {
+        method: 'PUT',
+        redirect: 'follow'
+    };
+      
+    fetch("http://localhost:8080/api/v1/user?id="+userId, requestOptions).then(response =>
+    {
+        if(response.status == 200){
+             location.replace("index.html");
+        }
+    }
+    );
+}

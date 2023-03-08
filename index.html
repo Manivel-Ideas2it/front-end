@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="todo.css">
+    <title>welcome</title>
+    <script>
+        function createAccount() {
+           location.href="createUser.html";
+        }
+        function signInAccount(){
+            location.href ="userLogin.html";
+        }
+     </script>
+</head>
+<body>
+    <div class="todo login">
+        <div class="welcomeDiv">
+            <div class="welcomeNoteDiv">
+                <p>welcome</p>
+            </div>
+            <div class="signInDiv"><button type="submit" class="sign" onclick="signInAccount()">sign-in</button></div>
+            <div class="signUpDiv"><button type="submit" class="sign" onclick="createAccount()">sign-up</button></div>
+        </div>
+    </div>
+</body>
+</html>
